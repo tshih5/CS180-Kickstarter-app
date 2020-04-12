@@ -1,10 +1,23 @@
 import './App.css';
 import React, {Component} from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
+import Contacts from './components/contacts';
 
 const { Header, Content, Footer } = Layout;
 
 class App extends Component{
+  componentDidMount(){
+    fetch('http://jsonplaceholder.typicode.com/users')
+    //fetch('./components/data/fakeData.json')
+        .then(res => res.json())
+        .then((data) => {
+          this.setState({ contacts: data })
+        })
+        .catch(console.log)
+  }
+  state = {
+    contacts: []
+  }
   render(){
     return(
       <div className="App">
@@ -24,13 +37,7 @@ class App extends Component{
               <Breadcrumb.Item>App</Breadcrumb.Item>
             </Breadcrumb>
             <div className="site-layout-content">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Steve Jobs</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">steve@apple.com</h6>
-                  <p class="card-text">Stay Hungry, Stay Foolish</p>
-                </div>
-              </div>
+              <Contacts contacts={this.state.contacts}/>
             </div>
           </Content>
       <Footer style={{ textAlign: 'center' }}>CS180 Project by CSgods</Footer>
