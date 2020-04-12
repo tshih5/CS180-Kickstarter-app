@@ -8,7 +8,6 @@ const { Header, Content, Footer } = Layout;
 class App extends Component{
   componentDidMount(){
     fetch('http://jsonplaceholder.typicode.com/users')
-    //fetch('./components/data/fakeData.json')
         .then(res => res.json())
         .then((data) => {
           this.setState({ contacts: data })
@@ -40,9 +39,9 @@ class App extends Component{
               <Contacts contacts={this.state.contacts}/>
             </div>
           </Content>
-      <Footer style={{ textAlign: 'center' }}>CS180 Project by CSgods</Footer>
-    </Layout>
-  </div>
+          <Footer style={{ textAlign: 'center' }}>CS180 Project by CSgods</Footer>
+        </Layout>
+      </div>
     );
   }
 }
