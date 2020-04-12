@@ -1,22 +1,25 @@
 import './App.css';
 import React, {Component} from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
-import Contacts from './components/contacts';
 
 const { Header, Content, Footer } = Layout;
 
 class App extends Component{
-  componentDidMount(){
-    fetch('http://jsonplaceholder.typicode.com/users')
-        .then(res => res.json())
-        .then((data) => {
-          this.setState({ contacts: data })
-        })
-        .catch(console.log)
+  constructor(props) {
+    super(props);
+    this.state = { apiResponse: "" };
   }
-  state = {
-    contacts: []
+
+  callAPI() {
+    fetch("http://localhost:9000/testAPI")
+        .then(res => res.text())
+        .then(res => this.setState({ apiResponse: res }));
   }
+
+  componentWillMount() {
+    this.callAPI();
+  }
+
   render(){
     return(
       <div className="App">
@@ -24,9 +27,9 @@ class App extends Component{
           <Header>
             <div className="logo" />
             <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-              <Menu.Item key="1">nav 1</Menu.Item>
-              <Menu.Item key="2">nav 2</Menu.Item>
-              <Menu.Item key="3">nav 3</Menu.Item>
+            <Menu.Item key="1">nav 1</Menu.Item>
+            <Menu.Item key="2">nav 2</Menu.Item>
+            <Menu.Item key="3">nav 3</Menu.Item>
             </Menu>
           </Header>
           <Content style={{ padding: '0 50px' }}>
@@ -36,7 +39,7 @@ class App extends Component{
               <Breadcrumb.Item>App</Breadcrumb.Item>
             </Breadcrumb>
             <div className="site-layout-content">
-              <Contacts contacts={this.state.contacts}/>
+              <p className="App-intro">{this.state.apiResponse}</p>
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>CS180 Project by CSgods</Footer>
