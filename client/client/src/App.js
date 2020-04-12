@@ -24,9 +24,6 @@ class App extends Component{
       <div className="App">
         <Layout className="layout">
           <Header>
-            <p classname='App-intro'>;{this.state.apiResonse}</p>
-          </Header>
-          <Header>
             <div className="logo" />
             <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
               <Menu.Item key="1">nav 1</Menu.Item>
@@ -45,7 +42,7 @@ class App extends Component{
                 <div class="card-body">
                   <h5 class="card-title">Steve Jobs</h5>
                   <h6 class="card-subtitle mb-2 text-muted">steve@apple.com</h6>
-                  <p class="card-text">Stay Hungry, Stay Foolish</p>
+                  <p classname='App-intro'>;{this.state.apiResonse}</p>
                 </div>
               </div>
             </div>
