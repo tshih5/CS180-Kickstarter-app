@@ -1,24 +1,43 @@
 import './App.css';
 import React, {Component} from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Form, Button, Input, Layout, Menu, Breadcrumb } from 'antd';
 
 const { Header, Content, Footer } = Layout;
 
 class App extends Component{
-  constructor(props) {
-    super(props);
-    this.state = { apiResponse: "" };
-  }
+  state = {
+    response: '',
+    post: '',
+    responseToPost: '',
+  };
 
-  callAPI() {
-    fetch("http://localhost:9000/testAPI")
-        .then(res => res.text())
-        .then(res => this.setState({ apiResponse: res }));
+  componentDidMount() {
+    this.callApi()
+      .then(res => this.setState({ response: res.express }))
+      .catch(err => console.log(err));
   }
-
-  componentWillMount() {
-    this.callAPI();
-  }
+  
+  callApi = async () => {
+    const response = await fetch("http://localhost:9000/testAPI/hello");
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+    
+    return body;
+  };
+  
+  handleSubmit = async e => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:9000/testAPI/world", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ post: this.state.post }),
+    });
+    const body = await response.text();
+    
+    this.setState({ responseToPost: body });
+  };
 
   render(){
     return(
@@ -40,6 +59,19 @@ class App extends Component{
             </Breadcrumb>
             <div className="site-layout-content">
               <p className="App-intro">{this.state.apiResponse}</p>
+              <p>{this.state.response}</p>
+              <form onSubmit={this.handleSubmit}>
+                <p>
+                <strong>Post to Server:</strong>
+                </p>
+                <input
+                  type="text"
+                  value={this.state.post}
+                  onChange={e => this.setState({ post: e.target.value })}
+                />
+                <button type="submit">Submit</button>
+              </form>
+              <p>{this.state.responseToPost}</p>
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>CS180 Project by CSgods</Footer>
