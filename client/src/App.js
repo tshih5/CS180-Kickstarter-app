@@ -1,5 +1,6 @@
 import './App.css';
-import React, {Component} from 'react';
+import '/Table';
+import React, {Component, useState, useEffect, useMemo} from 'react';
 import { Form, Button, Input, Layout, Menu, Breadcrumb } from 'antd';
 
 const { Header, Content, Footer } = Layout;
@@ -38,6 +39,8 @@ class App extends Component{
     
     this.setState({ responseToPost: body });
   };
+
+
 
   render(){
     return(
@@ -81,5 +84,18 @@ class App extends Component{
   }
 }
 
+function create_table() { 
+  //data state to store our parsed data
+  const [data, setData] = useState([]);
+
+  useEffect(() => { //what do the arrows do again lmao
+    (async () => {
+      const result = /*await express*/ fetch(/*bryant's data*/);
+      setData(result.data);
+    })(); //no clue what this is
+  }, []); //no clue what this is
+  
+  return (<div className="App"></div>);
+}
 
 export default App;
