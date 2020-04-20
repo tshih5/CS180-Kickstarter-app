@@ -22,8 +22,8 @@ const {
     canNextPage,
 } = useTable(
     {
-        columns,
-        data
+      columns,
+      data
     },
     useFilters,
     useSortBy,
@@ -59,8 +59,8 @@ const handleFilterChange = e => {
                     className={
                       column.isSorted
                         ? column.isSortedDesc
-                          ? "sort-descending"
-                          : "sort-ascending"
+                          ? "sort-desc"
+                          : "sort-asc"
                         : ""
                     }
                   >
@@ -114,7 +114,7 @@ const handleFilterChange = e => {
             setPageSize(Number(e.target.value))
           }}
         >
-          {pageSizeOptions.map(pageSize => (
+          {[10, 20, 30, 40, 50].map(pageSize => (
             <option key={pageSize} value={pageSize}>
               Show {pageSize}
             </option>
