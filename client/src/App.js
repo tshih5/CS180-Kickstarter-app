@@ -58,7 +58,6 @@ class App extends Component{
               <Breadcrumb.Item>App</Breadcrumb.Item>
             </Breadcrumb>
             <div className="site-layout-content">
-              <p className="App-intro">{this.state.apiResponse}</p>
               <p>{this.state.response}</p>
               <form onSubmit={this.handleSubmit}>
                 <p>
