@@ -3,6 +3,11 @@ var router = express.Router();
 //Path to data 
 const data = require('./../../../data/dataset.json');
 
+router.get('/', function(req, res) {
+    res.send('<h3>welcome to server side pagination demo</h3><br><h3>Enter any url containing <b>/coins/page_no/per_page</b></h3>');
+});
+
+
 router.get('/kickstarters', function(req, res, next) {
     //res.send({express: 'Hello from Express'});
     //send json file to express server
