@@ -95,7 +95,68 @@ function create_table() {
     })(); //no clue what this is
   }, []); //no clue what this is
   
-  return (<div className="App"></div>);
+  const columns = useMemo(
+    () => [
+      { //first group column
+        Header: "Kickstarters",
+        columns: [
+          {
+            Header: "Name",
+            accessor: ""//kickstarter.name 
+          },
+          {
+            Header: "Category",
+            accessor: ""//kickstarter.category
+          }
+        ]  
+      },
+      { //second group column
+        Header: "Project Metrics",
+        columns: [
+          {
+            Header: "Currency",
+            accessor: ""//kickstarter.currency
+          },
+          {
+            Header: "Project Deadline", //remove (?) -Tom
+            accessor: ""//kickstarter.deadline
+          },
+          {
+            Header: "Goal",
+            accessor: ""//kickstarter.goal
+          },
+          {
+            Header: "Launched",
+            accessor: ""//kickstarter.launched 
+          },
+          {
+            Header: "Amount Pledged",
+            accessor: ""//kickstarter.pledged  
+          },
+          {
+            Header: "State of Project",
+            accessor: ""//kickstarter.state   
+          },
+          {
+            Header: "Number of Backers",
+            accessor: ""//kickstarter.backers  
+          },
+          {
+            Header: "Location",
+            accessor: ""//kickstarter.location  
+          }
+        ]
+      }
+    ],
+    []
+  );
+
+  return (
+    <div className="App">
+      <Table columns={columns} data={data} />
+    </div>
+  );
+
 }
 
 export default App;
