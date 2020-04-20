@@ -102,11 +102,11 @@ function create_table() {
         columns: [
           {
             Header: "Name",
-            accessor: ""//kickstarter.name 
+            accessor: "name" 
           },
           {
             Header: "Category",
-            accessor: ""//kickstarter.category
+            accessor: "category"
           }
         ]  
       },
@@ -115,35 +115,35 @@ function create_table() {
         columns: [
           {
             Header: "Currency",
-            accessor: ""//kickstarter.currency
+            accessor: "currency"
           },
           {
             Header: "Project Deadline", //remove (?) -Tom
-            accessor: ""//kickstarter.deadline
+            accessor: "deadline"
           },
           {
             Header: "Goal",
-            accessor: ""//kickstarter.goal
+            accessor: "goal"
           },
           {
             Header: "Launched",
-            accessor: ""//kickstarter.launched 
+            accessor: "launched"
           },
           {
             Header: "Amount Pledged",
-            accessor: ""//kickstarter.pledged  
+            accessor: "pledged"  
           },
           {
             Header: "State of Project",
-            accessor: ""//kickstarter.state   
+            accessor: "state"   
           },
           {
             Header: "Number of Backers",
-            accessor: ""//kickstarter.backers  
+            accessor: "backers" 
           },
           {
             Header: "Location",
-            accessor: ""//kickstarter.location  
+            accessor: "country"
           }
         ]
       }
