@@ -51,3 +51,8 @@ table th.sort-desc::before {
   margin: 16px 24px 16px 0;
   float: left;
 }
+.create_table{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}

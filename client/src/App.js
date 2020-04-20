@@ -67,7 +67,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const result = await axios("http://localhost:9000/testapi/kickstarters");
+      const result = await axios("http://localhost:9000/kickstarters");
       setData(result.data);
     })();
   }, []);
