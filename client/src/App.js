@@ -1,5 +1,5 @@
 import './App.css';
-import './Table';
+import Table from './components/Table';
 import React, {Component, useState, useEffect, useMemo} from 'react';
 import { Form, Button, Input, Layout, Menu, Breadcrumb } from 'antd';
 
@@ -10,20 +10,42 @@ class App extends Component{
     response: '',
     post: '',
     responseToPost: '',
-  };
-  create_table() { 
-    //data state to store our parsed data
-    const [data, setData] = useState([]);
+    columns: '',
+    data: [],
+  }
+
+  componentDidMount() {
+    fetch("http://localhost:9000/testAPI/kickstarter")
+    // We get the API response and receive data in JSON format...
+    .then(response => response.json())
+    // ...then we update the users state
+    .then(data =>
+      this.setState({
+        users: data,
+        isLoading: false,
+      })
+    )
+    // Catch any errors we hit and update the app
+    .catch(error => this.setState({ error, isLoading: false }));
+  }``
   
-    useEffect(() => { //what do the arrows do again lmao
-      (async () => {
-        const result = /*await express*/ fetch(/*bryant's data*/);
-        setData(result.data);
-      })(); //no clue what this is
-    }, []); //no clue what this is
+  handleSubmit = async e => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:9000/testAPI/world", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ post: this.state.post }),
+    });
+    const body = await response.text();
     
-    const columns = useMemo(
-      () => [
+    this.setState({ responseToPost: body });
+  };
+
+  render(){
+    const columns = 
+      [
         { //first group column
           Header: "Kickstarters",
           columns: [
@@ -74,42 +96,8 @@ class App extends Component{
             }
           ]
         }
-      ],
-      []
-    );
-  
-  }
-  componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
-      .catch(err => console.log(err));
-  }
-  
-  callApi = async () => {
-    const response = await fetch("http://localhost:9000/testAPI/hello");
-    const body = await response.json();
-    if (response.status !== 200) throw Error(body.message);
-    
-    return body;
-  };
-  
-  handleSubmit = async e => {
-    e.preventDefault();
-    const response = await fetch("http://localhost:9000/testAPI/world", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ post: this.state.post }),
-    });
-    const body = await response.text();
-    
-    this.setState({ responseToPost: body });
-  };
-
-
-
-  render(){
+      ];
+      const data = this.state.data;
     return(
       <div className="App">
         <Layout className="layout">
@@ -128,7 +116,8 @@ class App extends Component{
               <Breadcrumb.Item>App</Breadcrumb.Item>
             </Breadcrumb>
             <div className="site-layout-content">
-              <p className="App-intro">{this.state.apiResponse}</p>
+
+              <Table columns={columns} data={data} />
               <p>{this.state.response}</p>
               <form onSubmit={this.handleSubmit}>
                 <p>
@@ -143,9 +132,7 @@ class App extends Component{
               </form>
               <p>{this.state.responseToPost}</p>
             </div>
-            <div className="create_table">
-            <Table columns={columns} data={data} />
-            </div>
+
           </Content>
           <Footer style={{ textAlign: 'center' }}>CS180 Project by CSgods</Footer>
         </Layout>
