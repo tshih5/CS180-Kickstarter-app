@@ -1,5 +1,5 @@
 import './App.css';
-import '/Table';
+import './Table';
 import React, {Component, useState, useEffect, useMemo} from 'react';
 import { Form, Button, Input, Layout, Menu, Breadcrumb } from 'antd';
 
@@ -11,7 +11,74 @@ class App extends Component{
     post: '',
     responseToPost: '',
   };
-
+  create_table() { 
+    //data state to store our parsed data
+    const [data, setData] = useState([]);
+  
+    useEffect(() => { //what do the arrows do again lmao
+      (async () => {
+        const result = /*await express*/ fetch(/*bryant's data*/);
+        setData(result.data);
+      })(); //no clue what this is
+    }, []); //no clue what this is
+    
+    const columns = useMemo(
+      () => [
+        { //first group column
+          Header: "Kickstarters",
+          columns: [
+            {
+              Header: "Name",
+              accessor: "name" 
+            },
+            {
+              Header: "Category",
+              accessor: "category"
+            }
+          ]  
+        },
+        { //second group column
+          Header: "Project Metrics",
+          columns: [
+            {
+              Header: "Currency",
+              accessor: "currency"
+            },
+            {
+              Header: "Project Deadline", //remove (?) -Tom
+              accessor: "deadline"
+            },
+            {
+              Header: "Goal",
+              accessor: "goal"
+            },
+            {
+              Header: "Launched",
+              accessor: "launched"
+            },
+            {
+              Header: "Amount Pledged",
+              accessor: "pledged"  
+            },
+            {
+              Header: "State of Project",
+              accessor: "state"   
+            },
+            {
+              Header: "Number of Backers",
+              accessor: "backers" 
+            },
+            {
+              Header: "Location",
+              accessor: "country"
+            }
+          ]
+        }
+      ],
+      []
+    );
+  
+  }
   componentDidMount() {
     this.callApi()
       .then(res => this.setState({ response: res.express }))
@@ -76,87 +143,15 @@ class App extends Component{
               </form>
               <p>{this.state.responseToPost}</p>
             </div>
+            <div className="create_table">
+            <Table columns={columns} data={data} />
+            </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>CS180 Project by CSgods</Footer>
         </Layout>
       </div>
     );
   }
-}
-
-function create_table() { 
-  //data state to store our parsed data
-  const [data, setData] = useState([]);
-
-  useEffect(() => { //what do the arrows do again lmao
-    (async () => {
-      const result = /*await express*/ fetch(/*bryant's data*/);
-      setData(result.data);
-    })(); //no clue what this is
-  }, []); //no clue what this is
-  
-  const columns = useMemo(
-    () => [
-      { //first group column
-        Header: "Kickstarters",
-        columns: [
-          {
-            Header: "Name",
-            accessor: "name" 
-          },
-          {
-            Header: "Category",
-            accessor: "category"
-          }
-        ]  
-      },
-      { //second group column
-        Header: "Project Metrics",
-        columns: [
-          {
-            Header: "Currency",
-            accessor: "currency"
-          },
-          {
-            Header: "Project Deadline", //remove (?) -Tom
-            accessor: "deadline"
-          },
-          {
-            Header: "Goal",
-            accessor: "goal"
-          },
-          {
-            Header: "Launched",
-            accessor: "launched"
-          },
-          {
-            Header: "Amount Pledged",
-            accessor: "pledged"  
-          },
-          {
-            Header: "State of Project",
-            accessor: "state"   
-          },
-          {
-            Header: "Number of Backers",
-            accessor: "backers" 
-          },
-          {
-            Header: "Location",
-            accessor: "country"
-          }
-        ]
-      }
-    ],
-    []
-  );
-
-  return (
-    <div className="App">
-      <Table columns={columns} data={data} />
-    </div>
-  );
-
 }
 
 export default App;
