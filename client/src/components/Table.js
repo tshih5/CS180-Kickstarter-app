@@ -3,7 +3,7 @@ import { useTable, useFilters, useSortBy } from "react-table";
 
 export default function Table({ columns, data }) {
   const [filterInput, setFilterInput] = useState("");
-  // Use the state and functions returned from useTable to build your UI
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -20,13 +20,14 @@ export default function Table({ columns, data }) {
     useSortBy
   );
 
+  //handle search
   const handleFilterChange = e => {
     const value = e.target.value || undefined;
     setFilter("name", value);
     setFilterInput(value);
   };
 
-  // Render the UI for your table
+  //Render UI
   return (
     <>
       <input
@@ -39,16 +40,8 @@ export default function Table({ columns, data }) {
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
-                <th
-                  {...column.getHeaderProps(column.getSortByToggleProps())}
-                  className={
-                    column.isSorted
-                      ? column.isSortedDesc
-                        ? "sort-desc"
-                        : "sort-asc"
-                      : ""
-                  }
-                >
+                <th {...column.getHeaderProps(column.getSortByToggleProps())}
+                  className={column.isSorted ? column.isSortedDesc ? "sort-desc": "sort-asc" : ""}>
                   {column.render("Header")}
                 </th>
               ))}
