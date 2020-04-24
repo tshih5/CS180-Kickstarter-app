@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useTable, useFilters, useSortBy } from "react-table";
+import {Input, Button} from 'antd';
 import axios from 'axios';
 
 const cellStyle = {
@@ -59,29 +60,27 @@ export default function Table({ columns, data, updateMyData, skipPageReset, setD
 
   const handleFilterChange = e => {
     const value = e.target.value || undefined;
-  //  setFilter("name", value);
-  
     setFilterInput(value);
   };
 
 const test = () => {
 	//console.log(filterInput)
 	(async () => {
-  const result = await axios.get("http://localhost:2345/search/" + filterInput);
+    const result = await axios.get("http://localhost:2345/search/" + filterInput);
     setData(result.data);
- })();
-	}
-
+  })();
+}
   return (
     <>
-      <input 
+      <Input
         value={filterInput}
         onChange={handleFilterChange}
         placeholder={"Search name"}
+        style={{width: "500px"}}
       />
-	  <button onClick={test}>
+	  <Button onClick={test}>
 	  Search
-	  </button>
+	  </Button>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (

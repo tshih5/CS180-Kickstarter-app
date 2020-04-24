@@ -89,12 +89,20 @@ function App() {
 
 
   useEffect(() => {
-  (async () => {
-  const result = await axios.get("http://localhost:2345/home");
-    setData(result.data);
-  })();
+    (async () => {
+      const result = await axios.get("http://localhost:2345/home");
+      setData(result.data);
+    })();
   }, []);
-  
+
+  const saveData = () =>{
+    //console.log(data);
+    (async () => {
+      var params = data;
+      let res = await axios.post('http://localhost:2345/users', params);
+      console.log(res.data);
+    })();
+  }
   
   return(
     <div className="App">
@@ -114,6 +122,7 @@ function App() {
             <Breadcrumb.Item>App</Breadcrumb.Item>
           </Breadcrumb>
           <div className="site-layout-content">
+          <div><Button onClick={saveData}>Save Data</Button></div>
           <div className="create_table"></div>
             <ReactTable columns={columns} data={data} setData={setData} updateMyData={updateMyData} skipPageReset = {skipPageReset} />
           </div>

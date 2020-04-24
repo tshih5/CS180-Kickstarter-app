@@ -27,6 +27,10 @@ app.get("/search/:searchtext", (req, res) => {
 	}
 });
 
+app.get("/save", (req, res) =>{
+	console.log(req.params);
+	res.send("save request got");
+});
 
 //app.post("/update/", (req,res) => {
 	
