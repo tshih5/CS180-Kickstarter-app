@@ -1,4 +1,4 @@
-import Table from "./components/Table";
+import ReactTable from "./components/Table";
 import "./App.css";
 import axios from "axios";
 import React, {Component, useState, useEffect, useMemo} from 'react';
@@ -64,8 +64,6 @@ function App() {
           }
         ]
       }
-	  
-	  
     ],
     []
   );
@@ -117,7 +115,7 @@ function App() {
           </Breadcrumb>
           <div className="site-layout-content">
           <div className="create_table"></div>
-            <Table columns={columns} data={data} setData={setData} updateMyData={updateMyData} skipPageReset = {skipPageReset} />
+            <ReactTable columns={columns} data={data} setData={setData} updateMyData={updateMyData} skipPageReset = {skipPageReset} />
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>CS180 Project by CSgods</Footer>
