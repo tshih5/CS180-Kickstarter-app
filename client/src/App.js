@@ -39,7 +39,8 @@ function App() {
           },
           {
             Header: "Goal",
-            accessor: "goal"
+            accessor: "goal",
+            width: 100
           },
           {
             Header: "Launched",
@@ -59,7 +60,8 @@ function App() {
           },
           {
             Header: "Location",
-            accessor: "country"
+            accessor: "country",
+            width: 150
           }
         ]
       }
@@ -70,6 +72,24 @@ function App() {
   );
 
   const [data, setData] = useState([]);
+  const [skipPageReset, setSkipPageReset] = React.useState(false);
+
+  const updateMyData = (rowIndex, columnId, value) => {
+    // We also turn on the flag to not reset the page
+    setSkipPageReset(true)
+    setData(old =>
+      old.map((row, index) => {
+        if (index === rowIndex) {
+          return {
+            ...old[rowIndex],
+            [columnId]: value,
+          }
+        }
+        return row;
+      })
+    )
+  }
+
 
   useEffect(() => {
   (async () => {
@@ -98,7 +118,7 @@ function App() {
           </Breadcrumb>
           <div className="site-layout-content">
           <div className="create_table"></div>
-            <Table columns={columns} data={data} setData={setData} />
+            <Table columns={columns} data={data} setData={setData} updateMyData={updateMyData} skipPageReset = {skipPageReset} />
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>CS180 Project by CSgods</Footer>

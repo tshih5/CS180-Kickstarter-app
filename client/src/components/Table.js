@@ -1,7 +1,34 @@
 import React, { useState } from "react";
 import { useTable, useFilters, useSortBy } from "react-table";
 
-export default function Table({ columns, data }) {
+
+const EditableCell = ({
+  value: initialValue,
+  row: {index},
+  column:{id},
+  updateMyData,
+}) => {
+  const [value, setValue] = React.useState(initialValue);
+  
+  const onChange = e =>{
+    setValue(e.target.value);
+  }
+
+  const onBlur = () => {
+    updateMyData(index, id, value);
+  }
+  React.useEffect(() =>{
+    setValue(initialValue);
+  }, [initialValue])
+  return <input value={value} onChange={onChange} onBlur={onBlur}/>
+}
+
+const defaultColumn = {
+  Cell: EditableCell,
+}
+
+
+export default function Table({ columns, data, updateMyData, skipPageReset }) {
   const [filterInput, setFilterInput] = useState("");
   // Use the state and functions returned from useTable to build your UI
   const {
@@ -14,7 +41,10 @@ export default function Table({ columns, data }) {
   } = useTable(
     {
       columns,
-      data
+      data,
+      defaultColumn,
+      autoResetPage: !skipPageReset,
+      updateMyData,
     },
     useFilters,
     useSortBy
