@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useTable, useFilters, useSortBy } from "react-table";
+import axios from 'axios';
 
 const cellStyle = {
   width: "150px",
@@ -32,9 +33,10 @@ const defaultColumn = {
 }
 
 
-export default function Table({ columns, data, updateMyData, skipPageReset }) {
+export default function Table({ columns, data, updateMyData, skipPageReset, setData }) {
+
   const [filterInput, setFilterInput] = useState("");
-  // Use the state and functions returned from useTable to build your UI
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -54,11 +56,24 @@ export default function Table({ columns, data, updateMyData, skipPageReset }) {
     useSortBy
   );
 
+
   const handleFilterChange = e => {
     const value = e.target.value || undefined;
-    setFilter("name", value);
+  //  setFilter("name", value);
+  
     setFilterInput(value);
   };
+
+const test = () => {
+	//console.log(filterInput)
+	(async () => {
+  const result = await axios.get("http://localhost:2345/search/" + filterInput);
+    setData(result.data);
+ })();
+	}
+
+
+
 
   // Render the UI for your table
   return (
@@ -68,6 +83,9 @@ export default function Table({ columns, data, updateMyData, skipPageReset }) {
         onChange={handleFilterChange}
         placeholder={"Search name"}
       />
+	  <button onClick={test}>
+	  Search
+	  </button>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (
