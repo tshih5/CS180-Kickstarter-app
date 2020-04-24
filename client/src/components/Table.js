@@ -72,10 +72,6 @@ const test = () => {
  })();
 	}
 
-
-
-
-  // Render the UI for your table
   return (
     <>
       <input 
