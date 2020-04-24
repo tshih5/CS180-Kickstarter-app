@@ -56,3 +56,10 @@ table th.sort-desc::before {
   flex-direction: column;
   padding: 0px;
 }
+
+input {
+  min-width:50px!important;
+  max-width:99.99%!important;
+  transition: width 0.25s;
+  text-align:center;
+}

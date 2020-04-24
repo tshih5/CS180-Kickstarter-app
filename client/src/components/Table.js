@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { useTable, useFilters, useSortBy } from "react-table";
 
+const cellStyle = {
+  width: "150px",
+  border: "none"
+}
 
 const EditableCell = ({
   value: initialValue,
@@ -20,7 +24,7 @@ const EditableCell = ({
   React.useEffect(() =>{
     setValue(initialValue);
   }, [initialValue])
-  return <input value={value} onChange={onChange} onBlur={onBlur}/>
+  return <input value={value} onChange={onChange} onBlur={onBlur} style={cellStyle}/>
 }
 
 const defaultColumn = {
@@ -59,7 +63,7 @@ export default function Table({ columns, data, updateMyData, skipPageReset }) {
   // Render the UI for your table
   return (
     <>
-      <input
+      <input 
         value={filterInput}
         onChange={handleFilterChange}
         placeholder={"Search name"}
