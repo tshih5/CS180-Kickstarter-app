@@ -26,7 +26,7 @@ const EditableCell = ({
   React.useEffect(() =>{
     setValue(initialValue);
   }, [initialValue])
-  return <input value={value} onChange={onChange} onBlur={onBlur} style={cellStyle}/>
+  return <Input value={value} onChange={onChange} onBlur={onBlur} style={cellStyle}/>
 }
 
 const defaultColumn = {
