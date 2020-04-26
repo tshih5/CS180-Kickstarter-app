@@ -102,8 +102,12 @@ function App() {
     console.log(diff);
     (async () => {
       var params = diff;
-      let res = await axios.post('http://localhost:9000/datasetpoint/save', params);
-      console.log(res.data);
+      await axios.post('http://localhost:9000/datasetpoint/save', params)
+        .then((response) => {
+          console.log(response);
+        },(error)=> {
+          console.log(error);
+        });
     })();
   }
   
