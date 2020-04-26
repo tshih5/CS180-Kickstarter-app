@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+const fs = require('fs');
 var data = require('../data/dataset.json')
 
 
@@ -27,9 +27,26 @@ router.get("/search/:searchtext", (req, res) => {
 	}
 });
 
-router.get("/save", (req, res) =>{
-	console.log(req.body);
-	res.end("success");
+router.post("/save", (req, res, next) =>{
+	var changedData = req.body;
+	console.log("changed data is " + JSON.stringify(changedData));
+	let id = [];
+	for(var i in changedData){
+		for(var j in data){
+			if(changedData[i].ID === data[j].ID){
+				save = j;
+				id.push(JSON.stringify(data[j].ID));
+				console.log("ID found: " + JSON.stringify(data[j].ID));
+				data[j]= changedData[i];
+			}
+		}
+	}
+	fs.writeFile("../api/data/dataset.json", JSON.stringify(data, null, 4), err =>{
+		if(err){
+			console.log(err);
+		}
+	});
+	res.send('Save request recieved; Changed Project ' + id.toString());
 });
 
 //app.post("/update/", (req,res) => {
