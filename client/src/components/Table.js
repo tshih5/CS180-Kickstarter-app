@@ -66,7 +66,7 @@ export default function Table({ columns, data, updateMyData, skipPageReset, setD
 const test = () => {
 	//console.log(filterInput)
 	(async () => {
-    const result = await axios.get("http://localhost:2345/search/" + filterInput);
+    const result = await axios.get("http://localhost:9000/datasetpoint/search/" + filterInput);
     setData(result.data);
   })();
 }

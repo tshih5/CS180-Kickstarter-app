@@ -39,7 +39,6 @@ function App() {
           {
             Header: "Goal",
             accessor: "goal",
-            width: 100
           },
           {
             Header: "Launched",
@@ -60,7 +59,6 @@ function App() {
           {
             Header: "Location",
             accessor: "country",
-            width: 150
           }
         ]
       }
@@ -69,6 +67,7 @@ function App() {
   );
 
   const [data, setData] = useState([]);
+  const [originalData, setOData] = useState();
   const [skipPageReset, setSkipPageReset] = React.useState(false);
 
   const updateMyData = (rowIndex, columnId, value) => {
@@ -90,16 +89,20 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const result = await axios.get("http://localhost:2345/home");
+      const result = await axios.get("http://localhost:9000/datasetpoint/home");
       setData(result.data);
+      setOData(result.data);
     })();
   }, []);
 
   const saveData = () =>{
+    //console.log(originalData);
     //console.log(data);
+    const diff = data.filter(({name:dname , category:dcategory , currency:dcurrency , deadline:ddeadline , goal:dgoal ,pledged:dpledged ,state:dstate , backers:dbackers ,location:dlocation }) => !originalData.some(({name:oname , category:ocategory , currency:ocurrency , deadline:odeadline , goal:ogoal ,pledged:opledged ,state:ostate , backers:obackers ,location:olocation }) => dname === oname && (dcategory === ocategory && dcurrency === ocurrency) && (ddeadline === odeadline && dgoal===ogoal) && (dpledged === opledged && dstate === ostate) && (dbackers === obackers && dlocation === olocation)));
+    console.log(diff);
     (async () => {
-      var params = data;
-      let res = await axios.post('http://localhost:2345/users', params);
+      var params = diff;
+      let res = await axios.post('http://localhost:9000/datasetpoint/save', params);
       console.log(res.data);
     })();
   }

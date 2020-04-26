@@ -7,6 +7,7 @@ var cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var testAPIRouter = require('./routes/testAPI');
+var dataSetPointRouter = require('./routes/datasetpoint');
 //added
 var bodyParser = require('body-parser');
 
@@ -24,12 +25,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //added:
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json({limit: '10mb'}));
+app.use(bodyParser.urlencoded({extended: true, limit: '10mb'}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/testAPI', testAPIRouter);
+app.use('/datasetpoint', dataSetPointRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

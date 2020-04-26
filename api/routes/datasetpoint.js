@@ -1,14 +1,14 @@
 var express = require('express');
-var app = express();
+var router = express.Router();
 
-var data = require('./data/dataset.json')
+var data = require('../data/dataset.json')
 
 
-app.get('/home', function (req, res) {
+router.get('/home', function (req, res) {
 	res.send(data);
 })
 
-app.get("/search/:searchtext", (req, res) => {
+router.get("/search/:searchtext", (req, res) => {
 	console.log(req.params)
 	
     if (req.params["searchtext"] == "undefined") {
@@ -27,16 +27,10 @@ app.get("/search/:searchtext", (req, res) => {
 	}
 });
 
-app.get("/save", (req, res) =>{
-	console.log(req.params);
-	res.send("save request got");
+router.get("/save", (req, res) =>{
+	console.log(req.body);
+	res.end("success");
 });
 
 //app.post("/update/", (req,res) => {
-	
-
-app.listen(2345, () => {
-	console.log("server is work");
-	
-});
-
+module.exports = router;	
