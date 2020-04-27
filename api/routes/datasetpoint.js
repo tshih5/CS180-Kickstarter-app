@@ -34,7 +34,6 @@ router.post("/save", (req, res, next) =>{
 	for(var i in changedData){
 		for(var j in data){
 			if(changedData[i].ID === data[j].ID){
-				save = j;
 				id.push(JSON.stringify(data[j].ID));
 				console.log("ID found: " + JSON.stringify(data[j].ID));
 				data[j]= changedData[i];
