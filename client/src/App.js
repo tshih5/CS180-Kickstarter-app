@@ -61,14 +61,33 @@ function App() {
             accessor: "country",
           }
         ]
-      }
+      },
+      {
+        Header: "Delete",
+        accessor: "delete",
+
+        Cell: (row)=> (
+          <span style={{cursor:'pointer',color:'red',textDecoration:'underline'}}
+                onClick={() => {
+                  let newdata = data;
+                  console.log(data[row.row.index]);
+                  newdata.splice(row.row.index, 1)
+                  setData({newdata})
+                  }}>
+                    Delete
+                  </span> 
+          )}
     ],
     []
   );
 
+  
+
   const [data, setData] = useState([]);
   const [originalData, setOData] = useState();
   const [skipPageReset, setSkipPageReset] = React.useState(false);
+  
+
 
   const updateMyData = (rowIndex, columnId, value) => {
     // We also turn on the flag to not reset the page
@@ -112,6 +131,7 @@ function App() {
     setOData(data);
   }
   
+
   return(
     <div className="App">
       <Layout className="layout">
