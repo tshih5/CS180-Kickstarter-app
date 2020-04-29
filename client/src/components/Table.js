@@ -70,6 +70,15 @@ const test = () => {
     setData(result.data);
   })();
 }
+
+const add = () => {
+	//console.log(filterInput)
+	(async () => {
+    const result = await axios.post("http://localhost:9000/datasetpoint/add");
+    setData(result.data);
+  })();
+}
+
   return (
     <>
       <Input
@@ -80,6 +89,10 @@ const test = () => {
       />
 	  <Button onClick={test}>
 	  Search
+	  </Button>
+	  &nbsp;
+	   <Button onClick={add}>
+	  add
 	  </Button>
       <table {...getTableProps()}>
         <thead>
