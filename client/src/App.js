@@ -69,10 +69,10 @@ function App() {
         Cell: (row)=> (
           <span style={{cursor:'pointer',color:'red',textDecoration:'underline'}}
                 onClick={() => {
-                  let newdata = data;
-                  console.log(data[row.row.index]);
-                  newdata.splice(row.row.index, 1)
-                  setData({newdata})
+                  //let newdata = data;
+                  //console.log(data[row.row.index]);
+                  //newdata.splice(row.row.index, 1)
+                  //setData({newdata})
                   }}>
                     Delete
                   </span> 
