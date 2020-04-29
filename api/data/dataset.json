@@ -1,21 +1,5 @@
 [
     {
-        "category": "Restaurants",
-        "": "",
-        "name": "Monarch Espresso Bar",
-        "main_category": "Food",
-        "country": "US",
-        "pledged": "52375",
-        "usd_pledged": "52375",
-        "backers": "224",
-        "currency": "USD",
-        "state": "successful",
-        "deadline": "04/01/16 13:38",
-        "ID": "1000014025",
-        "launched": "02/26/16 13:38",
-        "goal": "50000"
-    },
-    {
         "category": "Food",
         "": "",
         "name": "Support Solar Roasted Coffee & Green Energy!  SolarCoffee.co",

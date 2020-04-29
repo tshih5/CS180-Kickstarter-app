@@ -78,6 +78,13 @@ const add = () => {
     setData(result.data);
   })();
 }
+const delete_element = () => {
+	//console.log(filterInput)
+	(async () => {
+    const result = await axios.post("http://localhost:9000/datasetpoint/delete_element");
+    setData(result.data);
+  })();
+}
 
   return (
     <>
@@ -94,6 +101,9 @@ const add = () => {
 	   <Button onClick={add}>
 	  add
 	  </Button>
+    <Button onClick={delete_element}>
+      Delete Element
+    </Button>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (
