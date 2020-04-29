@@ -6,7 +6,7 @@ var data = require('../data/dataset.json')
 
 router.get('/home', function (req, res) {
 	res.send(data);
-});
+})
 
 router.get("/search/:searchtext", (req, res) => {
 	console.log(req.params)
@@ -48,47 +48,5 @@ router.post("/save", (req, res, next) =>{
 	res.send('Save request recieved; Changed Project ' + id.toString());
 });
 
-<<<<<<< HEAD
-router.post("/add", (req, res, next) =>{
-var obj = 
-		 {"category": "",
-        "": "",
-        "name": "insert project name",
-        "main_category": "",
-        "country": "",
-        "pledged": "",
-        "usd_pledged": "",
-        "backers": "",
-        "currency": "",
-        "state": "",
-        "deadline": "",
-        "ID": "",
-        "launched": "",
-        "goal": ""
-};
-fs.readFile("../api/data/dataset.json", 'utf8', function (err, data) {
-	var temp = JSON.parse(data)
-		temp.push(obj)
-			fs.writeFile("../api/data/dataset.json", JSON.stringify(temp), function (err, temp)  {
-		if(err){
-				console.log(err);
-			}
-		});
-		res.send(temp);
-
-	});
-});
-
-router.post("/delete_element", () => {
-	data.splice(data[0], 1);
-	console.log("deleting first element of array")
-	fs.writeFile("../api/data/dataset.json", JSON.stringify(data, null, 4), err =>{
-		if(err){
-			console.log(err);
-		}
-	});
-});
-
 //app.post("/update/", (req,res) => {
 module.exports = router;	
-

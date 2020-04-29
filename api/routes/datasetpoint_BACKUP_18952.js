@@ -79,6 +79,8 @@ fs.readFile("../api/data/dataset.json", 'utf8', function (err, data) {
 	});
 });
 
+module.exports = router;	
+=======
 router.post("/delete_element", () => {
 	data.splice(data[0], 1);
 	console.log("deleting first element of array")
@@ -91,4 +93,4 @@ router.post("/delete_element", () => {
 
 //app.post("/update/", (req,res) => {
 module.exports = router;	
-
+>>>>>>> delete2

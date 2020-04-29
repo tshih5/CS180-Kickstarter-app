@@ -1,10 +1,11 @@
-import ReactTable from "./components/Table";
+import Table from "./components/Table";
 import "./App.css";
 import axios from "axios";
 import React, {Component, useState, useEffect, useMemo} from 'react';
 import { Form, Button, Input, Layout, Menu, Breadcrumb } from 'antd';
 
 const { Header, Content, Footer } = Layout;
+
 
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
           },
           {
             Header: "Goal",
-            accessor: "goal",
+            accessor: "goal"
           },
           {
             Header: "Launched",
@@ -58,80 +59,33 @@ function App() {
           },
           {
             Header: "Location",
-            accessor: "country",
+            accessor: "country"
           }
         ]
-      },
-      {
-        Header: "Delete",
-        accessor: "delete",
-
-        Cell: (row)=> (
-          <span style={{cursor:'pointer',color:'red',textDecoration:'underline'}}
-                onClick={() => {
-                  //let newdata = data;
-                  //console.log(data[row.row.index]);
-                  //newdata.splice(row.row.index, 1)
-                  //setData({newdata})
-                  }}>
-                    Delete
-                  </span> 
-          )}
+      }
+	  
+	  
     ],
     []
   );
 
-  
-
   const [data, setData] = useState([]);
-  const [originalData, setOData] = useState();
-  const [skipPageReset, setSkipPageReset] = React.useState(false);
-  
-
-
-  const updateMyData = (rowIndex, columnId, value) => {
-    // We also turn on the flag to not reset the page
-    setSkipPageReset(true)
-    setData(old =>
-      old.map((row, index) => {
-        if (index === rowIndex) {
-          return {
-            ...old[rowIndex],
-            [columnId]: value,
-          }
-        }
-        return row;
-      })
-    )
-  }
-
 
   useEffect(() => {
+<<<<<<< HEAD
+  (async () => {
+  const result = await axios.get("http://localhost:2345/home");
+    setData(result.data);
+  })();
+=======
     (async () => {
-      const result = await axios.get("http://localhost:9000/datasetpoint/home");
+      const result = await axios("http://localhost:9000/kickstarters");
       setData(result.data);
-      setOData(result.data);
     })();
+>>>>>>> 2da0b3a96a295b4966526444eb4f14527a556089
   }, []);
-
-  const saveData = () =>{
-    //console.log(originalData);
-    //console.log(data);
-    const diff = data.filter(({name:dname , category:dcategory , currency:dcurrency , deadline:ddeadline , goal:dgoal ,pledged:dpledged ,state:dstate , backers:dbackers ,location:dlocation }) => !originalData.some(({name:oname , category:ocategory , currency:ocurrency , deadline:odeadline , goal:ogoal ,pledged:opledged ,state:ostate , backers:obackers ,location:olocation }) => dname === oname && (dcategory === ocategory && dcurrency === ocurrency) && (ddeadline === odeadline && dgoal===ogoal) && (dpledged === opledged && dstate === ostate) && (dbackers === obackers && dlocation === olocation)));
-    //console.log(diff);
-    (async () => {
-      var params = diff;
-      await axios.post('http://localhost:9000/datasetpoint/save', params)
-        .then((response) => {
-          console.log(response.data);
-        },(error)=> {
-          console.log(error);
-        });
-    })();
-    setOData(data);
-  }
   
-
+  
   return(
     <div className="App">
       <Layout className="layout">
@@ -150,9 +104,8 @@ function App() {
             <Breadcrumb.Item>App</Breadcrumb.Item>
           </Breadcrumb>
           <div className="site-layout-content">
-          <div><Button onClick={saveData}>Save Data</Button></div>
           <div className="create_table"></div>
-            <ReactTable columns={columns} data={data} setData={setData} updateMyData={updateMyData} skipPageReset = {skipPageReset} />
+            <Table columns={columns} data={data} setData={setData} />
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>CS180 Project by CSgods</Footer>

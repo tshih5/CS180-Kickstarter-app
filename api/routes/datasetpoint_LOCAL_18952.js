@@ -48,7 +48,6 @@ router.post("/save", (req, res, next) =>{
 	res.send('Save request recieved; Changed Project ' + id.toString());
 });
 
-<<<<<<< HEAD
 router.post("/add", (req, res, next) =>{
 var obj = 
 		 {"category": "",
@@ -79,16 +78,4 @@ fs.readFile("../api/data/dataset.json", 'utf8', function (err, data) {
 	});
 });
 
-router.post("/delete_element", () => {
-	data.splice(data[0], 1);
-	console.log("deleting first element of array")
-	fs.writeFile("../api/data/dataset.json", JSON.stringify(data, null, 4), err =>{
-		if(err){
-			console.log(err);
-		}
-	});
-});
-
-//app.post("/update/", (req,res) => {
 module.exports = router;	
-
