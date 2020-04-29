@@ -70,6 +70,14 @@ const test = () => {
     setData(result.data);
   })();
 }
+
+const delete_element = () => {
+  (async () => {
+    const result = await axios.post("http://localhost:9000/datasetpoint/delete_element");
+    setData(result.data);
+  })();
+}
+
   return (
     <>
       <Input
@@ -81,6 +89,9 @@ const test = () => {
 	  <Button onClick={test}>
 	  Search
 	  </Button>
+    <Button onClick={delete_element}>
+      Delete
+    </Button>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (
