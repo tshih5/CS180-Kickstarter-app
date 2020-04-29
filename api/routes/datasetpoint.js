@@ -48,7 +48,6 @@ router.post("/save", (req, res, next) =>{
 	res.send('Save request recieved; Changed Project ' + id.toString());
 });
 
-<<<<<<< HEAD
 router.post("/add", (req, res, next) =>{
 var obj = 
 		 {"category": "",

@@ -71,16 +71,10 @@ const test = () => {
   })();
 }
 
-<<<<<<< HEAD
 const add = () => {
 	//console.log(filterInput)
 	(async () => {
     const result = await axios.post("http://localhost:9000/datasetpoint/add");
-=======
-const delete_element = () => {
-  (async () => {
-    const result = await axios.post("http://localhost:9000/datasetpoint/delete_element");
->>>>>>> delete2
     setData(result.data);
   })();
 }
@@ -96,16 +90,10 @@ const delete_element = () => {
 	  <Button onClick={test}>
 	  Search
 	  </Button>
-<<<<<<< HEAD
 	  &nbsp;
 	   <Button onClick={add}>
 	  add
 	  </Button>
-=======
-    <Button onClick={delete_element}>
-      Delete
-    </Button>
->>>>>>> delete2
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (
