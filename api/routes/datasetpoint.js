@@ -49,33 +49,34 @@ router.post("/save", (req, res, next) =>{
 });
 
 router.post("/add", (req, res, next) =>{
-var obj = 
-		 {"category": "",
-        "": "",
-        "name": "insert project name",
-        "main_category": "",
-        "country": "",
-        "pledged": "",
-        "usd_pledged": "",
-        "backers": "",
-        "currency": "",
-        "state": "",
-        "deadline": "",
-        "ID": "",
-        "launched": "",
-        "goal": ""
-};
-fs.readFile("../api/data/dataset.json", 'utf8', function (err, data) {
-	var temp = JSON.parse(data)
-		temp.push(obj)
-			fs.writeFile("../api/data/dataset.json", JSON.stringify(temp), function (err, temp)  {
-		if(err){
-				console.log(err);
-			}
-		});
-		res.send(temp);
+	var obj = 
+		{
+		"category": "",
+	    "": "",
+	    "name": "insert project name",
+	    "main_category": "",
+	    "country": "",
+	    "pledged": "",
+	    "usd_pledged": "",
+	    "backers": "",
+	    "currency": "",
+	    "state": "",
+	    "deadline": "",
+	    "ID": "",
+	    "launched": "",
+	    "goal": ""
+		};
+	fs.readFile("../api/data/dataset.json", 'utf8', function (err, data) {
+		var temp = JSON.parse(data)
+			temp.push(obj)
+				fs.writeFile("../api/data/dataset.json", JSON.stringify(temp), function (err, temp)  {
+			if(err){
+					console.log(err);
+				}
+			});
+			res.send(temp);
 
-	});
+		});
 });
 
 router.post("/delete_element", () => {
