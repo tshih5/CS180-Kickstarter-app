@@ -23,6 +23,7 @@ const EditableCell = ({
   const onBlur = () => {
     updateMyData(index, id, value);
   }
+  
   React.useEffect(() =>{
     setValue(initialValue);
   }, [initialValue])
@@ -63,7 +64,7 @@ export default function Table({ columns, data, updateMyData, skipPageReset, setD
     setFilterInput(value);
   };
 
-const test = () => {
+const Search = () => {
 	//console.log(filterInput)
 	(async () => {
     const result = await axios.get("http://localhost:9000/datasetpoint/search/" + filterInput);
@@ -94,7 +95,7 @@ const delete_element = () => {
         placeholder={"Search name"}
         style={{width: "500px"}}
       />
-	  <Button onClick={test}>
+	  <Button onClick={Search}>
 	  Search
 	  </Button>
 	  &nbsp;

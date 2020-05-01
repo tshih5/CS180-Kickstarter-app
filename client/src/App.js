@@ -3,6 +3,7 @@ import "./App.css";
 import axios from "axios";
 import React, {Component, useState, useEffect, useMemo} from 'react';
 import { Form, Button, Input, Layout, Menu, Breadcrumb } from 'antd';
+import logo from './logo.png';
 
 const { Header, Content, Footer } = Layout;
 
@@ -141,6 +142,7 @@ function App() {
           <Menu.Item key="1">nav 1</Menu.Item>
           <Menu.Item key="2">nav 2</Menu.Item>
           <Menu.Item key="3">nav 3</Menu.Item>
+          <img src={logo} />
           </Menu>
         </Header>	
         <Content style={{ padding: '0 50px' }}>

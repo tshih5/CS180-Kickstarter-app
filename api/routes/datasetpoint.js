@@ -69,7 +69,7 @@ router.post("/add", (req, res, next) =>{
 	fs.readFile("../api/data/dataset.json", 'utf8', function (err, data) {
 		var temp = JSON.parse(data)
 			temp.push(obj)
-				fs.writeFile("../api/data/dataset.json", JSON.stringify(temp), function (err, temp)  {
+				fs.writeFile("../api/data/dataset.json", JSON.stringify(temp, null, 4), function (err, temp)  {
 			if(err){
 					console.log(err);
 				}
