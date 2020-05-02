@@ -115,7 +115,7 @@ function App() {
     })();
   }, []);
 
-  const saveData = () =>{
+  const UpdateData = () =>{
     //console.log(originalData);
     //console.log(data);
     const diff = data.filter(({name:dname , category:dcategory , currency:dcurrency , deadline:ddeadline , goal:dgoal ,pledged:dpledged ,state:dstate , backers:dbackers ,location:dlocation }) => !originalData.some(({name:oname , category:ocategory , currency:ocurrency , deadline:odeadline , goal:ogoal ,pledged:opledged ,state:ostate , backers:obackers ,location:olocation }) => dname === oname && (dcategory === ocategory && dcurrency === ocurrency) && (ddeadline === odeadline && dgoal===ogoal) && (dpledged === opledged && dstate === ostate) && (dbackers === obackers && dlocation === olocation)));
@@ -152,7 +152,7 @@ function App() {
             <Breadcrumb.Item>App</Breadcrumb.Item>
           </Breadcrumb>
           <div className="site-layout-content">
-          <div><Button onClick={saveData}>Save Data</Button></div>
+          <div><Button onClick={UpdateData}>Update Data</Button></div>
           <div className="create_table"></div>
             <ReactTable columns={columns} data={data} setData={setData} updateMyData={updateMyData} skipPageReset = {skipPageReset} />
           </div>
