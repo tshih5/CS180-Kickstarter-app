@@ -41,9 +41,9 @@ export default class PopUp extends Component {
 
   handleChange = (id, e) =>{
     if(id)
-      this.state.value1 = e;
+      this.setState({value1: e})
     else
-      this.state.value0 = e;
+      this.setState({value0: e})
   };
 
   getRatio = async values => {
