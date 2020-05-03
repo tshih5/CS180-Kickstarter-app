@@ -103,7 +103,6 @@ router.post("/getDonation", (req, res, next) => {
 		}
 	}
 	var donation = (money / count);
-	donation = donation.toPrecision(3);
 	console.log(donation);
 	res.send(donation.toString());
 });
