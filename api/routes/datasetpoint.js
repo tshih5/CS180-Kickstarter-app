@@ -107,6 +107,26 @@ router.post("/getratio", (req, res, next) => {
 	res.send(ratio.toString());
 });
 
+
+router.post("/getDonation", (req, res, next) => {
+	var donationData = req.body;
+	console.log(donationData);
+	
+	var money = 0.00;
+	var count = 0;
+
+	for(var i in data) {
+		if(data[i].main_category == donationData.value) {
+			money = money + parseInt(data[i].usd_pledged);
+			count++;
+		}
+	}
+	var donation = (money / count);
+	donation = donation.toFixed(2);
+	console.log(donation);
+	res.send(donation);
+});
+
 //app.post("/update/", (req,res) => {
 module.exports = router;	
 

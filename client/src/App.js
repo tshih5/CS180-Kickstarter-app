@@ -1,5 +1,6 @@
 import ReactTable from "./components/Table";
 import Metric1 from "./components/Metric1"
+import AverageDonation from "./components/Average_Donation"
 import "./App.css";
 import axios from "axios";
 import React, {Component, useState, useEffect, useMemo} from 'react';
@@ -134,6 +135,9 @@ function App() {
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             <Breadcrumb.Item>App</Breadcrumb.Item>
           </Breadcrumb>
+          <div className ="AverageDonation">
+            <AverageDonation>Average Donation</AverageDonation>
+          </div>
           <div className="site-layout-content">
             <div className="metrics">
               <Metric1></Metric1>
