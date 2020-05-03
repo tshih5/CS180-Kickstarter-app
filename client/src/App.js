@@ -1,9 +1,9 @@
 import ReactTable from "./components/Table";
-import PopUp from "./components/Metric1"
+import Metric1 from "./components/Metric1"
 import "./App.css";
 import axios from "axios";
 import React, {Component, useState, useEffect, useMemo} from 'react';
-import { Form, Button, Input, Layout, Menu, Breadcrumb } from 'antd';
+import { Modal, Form, Button, Input, Layout, Menu, Breadcrumb } from 'antd';
 import logo from './logo.png';
 
 const { Header, Content, Footer } = Layout;
@@ -73,7 +73,6 @@ function App() {
   const [data, setData] = useState([]);
   const [originalData, setOData] = useState([]);
   const [skipPageReset, setSkipPageReset] = useState(false);
-  const [seen, setSeen] = useState(false);
 
 
   const updateMyData = (rowIndex, columnId, value) => {
@@ -117,7 +116,6 @@ function App() {
     })();
     setOData(data);
   }
-  
 
   return(
     <div className="App">
@@ -134,15 +132,11 @@ function App() {
         <Content style={{ padding: '0 50px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>List</Breadcrumb.Item>
             <Breadcrumb.Item>App</Breadcrumb.Item>
           </Breadcrumb>
           <div className="site-layout-content">
             <div className="metrics">
-              <PopUp>Metric 1</PopUp>
-              <Button>Metric 2</Button>
-              <Button>Metric 3</Button>
-              <Button>Metric 4</Button>
+              <Metric1></Metric1>
             </div>
             &nbsp;
             <div><Button onClick={UpdateData}>Update Data</Button></div>

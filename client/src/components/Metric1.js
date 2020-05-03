@@ -38,20 +38,20 @@ export default class PopUp extends Component {
       this.setState({value1: e});
     else
       this.setState({value0: e});
-    
   };
 
   render() {
     return (
       <div>
-        <Button onClick={this.showModal}>
-          Metric 1
+        <Button type="primary" onClick={this.showModal}>
+          Project State Ratio
         </Button>
         <Modal
           title="Ratio metric"
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
+          okText="Submit"
         >
           <div>
             <Select value={this.state.value0} onChange={(e) => this.handleChange(0, e)}>
