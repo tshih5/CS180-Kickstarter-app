@@ -1,4 +1,5 @@
 import ReactTable from "./components/Table";
+import PopUp2 from "./components/Average_Donation"
 import "./App.css";
 import axios from "axios";
 import React, {Component, useState, useEffect, useMemo} from 'react';
@@ -151,6 +152,9 @@ function App() {
             <Breadcrumb.Item>List</Breadcrumb.Item>
             <Breadcrumb.Item>App</Breadcrumb.Item>
           </Breadcrumb>
+          <div className ="AverageDonation">
+            <PopUp2>Average Donation</PopUp2>
+          </div>
           <div className="site-layout-content">
           <div><Button onClick={UpdateData}>Update Data</Button></div>
           <div className="create_table"></div>
