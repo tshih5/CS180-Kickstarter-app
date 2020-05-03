@@ -89,58 +89,54 @@ const delete_element = () => {
 
   return (
     <>
-      <Input
-        value={filterInput}
-        onChange={handleFilterChange}
-        placeholder={"Search name"}
-        style={{width: "500px"}}
-      />
-	  <Button onClick={Search}>
-	  Search
-	  </Button>
-	  &nbsp;
-	   <Button onClick={add}>
-	  add
-	  </Button>
-    <Button onClick={delete_element}>
-      Delete Element
-    </Button>
-      <table {...getTableProps()}>
-        <thead>
-          {headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
-                <th
-                  {...column.getHeaderProps(column.getSortByToggleProps())}
-                  className={
-                    column.isSorted
-                      ? column.isSortedDesc
-                        ? "sort-desc"
-                        : "sort-asc"
-                      : ""
-                  }
-                >
-                  {column.render("Header")}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row, i) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map(cell => {
-                  return (
-                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                  );
-                })}
+      <div>
+        <Input
+          value={filterInput}
+          onChange={handleFilterChange}
+          placeholder={"Search name"}
+          style={{width: "500px"}}
+        />
+	      <Button onClick={Search}>Search</Button>
+        <Button onClick={add}>add</Button>
+        <Button onClick={delete_element}>Delete Element</Button>
+      </div>
+      &nbsp;
+        <table {...getTableProps()}>
+          <thead>
+            {headerGroups.map(headerGroup => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map(column => (
+                  <th
+                    {...column.getHeaderProps(column.getSortByToggleProps())}
+                    className={
+                      column.isSorted
+                        ? column.isSortedDesc
+                          ? "sort-desc"
+                          : "sort-asc"
+                        : ""
+                    }
+                  >
+                    {column.render("Header")}
+                  </th>
+                ))}
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
+            ))}
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {rows.map((row, i) => {
+              prepareRow(row);
+              return (
+                <tr {...row.getRowProps()}>
+                  {row.cells.map(cell => {
+                    return (
+                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
     </>
   );
 }
