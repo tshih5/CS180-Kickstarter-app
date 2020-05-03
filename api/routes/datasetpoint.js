@@ -89,6 +89,24 @@ router.post("/delete_element", () => {
 	});
 });
 
+router.post("/getratio", (req, res, next) => {
+	var ratioData = req.body;
+	console.log(ratioData);
+	var numVal0 = 0;
+	var numVal1 = 0;
+	for(var i in data){
+		if(data[i].state == ratioData.value0){
+			numVal0 = numVal0 + 1;
+		}
+		if(data[i].state == ratioData.value1){
+			numVal1 = numVal1 + 1;
+		}
+	}
+	var ratio = 100 * (numVal0 / numVal1);
+	ratio = Math.round((ratio + Number.EPSILON) * 100) / 100
+	res.send(ratio.toString());
+});
+
 //app.post("/update/", (req,res) => {
 module.exports = router;	
 
