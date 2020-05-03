@@ -1,4 +1,5 @@
 import ReactTable from "./components/Table";
+import PopUp from "./components/Metric1"
 import "./App.css";
 import axios from "axios";
 import React, {Component, useState, useEffect, useMemo} from 'react';
@@ -62,22 +63,7 @@ function App() {
             accessor: "country",
           }
         ]
-      },
-      {
-        Header: "Delete",
-        accessor: "delete",
-
-        Cell: (row)=> (
-          <span style={{cursor:'pointer',color:'red',textDecoration:'underline'}}
-                onClick={() => {
-                  //let newdata = data;
-                  //console.log(data[row.row.index]);
-                  //newdata.splice(row.row.index, 1)
-                  //setData({newdata})
-                  }}>
-                    Delete
-                  </span> 
-          )}
+      }
     ],
     []
   );
@@ -85,9 +71,9 @@ function App() {
   
 
   const [data, setData] = useState([]);
-  const [originalData, setOData] = useState();
-  const [skipPageReset, setSkipPageReset] = React.useState(false);
-  
+  const [originalData, setOData] = useState([]);
+  const [skipPageReset, setSkipPageReset] = useState(false);
+  const [seen, setSeen] = useState(false);
 
 
   const updateMyData = (rowIndex, columnId, value) => {
@@ -152,9 +138,17 @@ function App() {
             <Breadcrumb.Item>App</Breadcrumb.Item>
           </Breadcrumb>
           <div className="site-layout-content">
-          <div><Button onClick={UpdateData}>Update Data</Button></div>
-          <div className="create_table"></div>
-            <ReactTable columns={columns} data={data} setData={setData} updateMyData={updateMyData} skipPageReset = {skipPageReset} />
+            <div className="metrics">
+              <PopUp>Metric 1</PopUp>
+              <Button>Metric 2</Button>
+              <Button>Metric 3</Button>
+              <Button>Metric 4</Button>
+            </div>
+            &nbsp;
+            <div><Button onClick={UpdateData}>Update Data</Button></div>
+            <div className="create_table">
+              <ReactTable columns={columns} data={data} setData={setData} updateMyData={updateMyData} skipPageReset = {skipPageReset} />
+            </div>
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>CS180 Project by CSgods</Footer>
