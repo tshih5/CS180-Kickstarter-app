@@ -89,6 +89,25 @@ router.post("/delete_element", () => {
 	});
 });
 
+router.post("/getDonation", (req, res, next) => {
+	var donationData = req.body;
+	console.log(donationData);
+	
+	var money = 0.00;
+	var count = 0;
+
+	for(var i in data) {
+		if(data[i].main_category == donationData.value) {
+			money = money + parseInt(data[i].usd_pledged);
+			count++;
+		}
+	}
+	var donation = (money / count);
+	donation = donation.toPrecision(3);
+	console.log(donation);
+	res.send(donation.toString());
+});
+
 //app.post("/update/", (req,res) => {
 module.exports = router;	
 

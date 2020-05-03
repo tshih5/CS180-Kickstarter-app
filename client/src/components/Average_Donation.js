@@ -26,6 +26,7 @@ export default class PopUp2 extends Component {
     //route to calculation function?
    console.log("value: ", this.state.value);
    var values = {"value": this.state.value, "donation": 0}
+   console.log(values);
    this.getDonation(values);
   };
 
@@ -70,7 +71,7 @@ export default class PopUp2 extends Component {
               <Option value="Design">Design</Option>
               <Option value="Games">Games</Option>
               <Option value="Publishing">Publishing</Option>
-              <Option value="Film and Video">Film and Video</Option>
+              <Option value="Film & Video">Film and Video</Option>
               <Option value="Fashion">Fashion</Option>
               <Option value="Technology">Technology</Option>
               <Option value="Crafts">Crafts</Option>
@@ -78,7 +79,7 @@ export default class PopUp2 extends Component {
             </Select>
           </div>
           <div>
-              <p>The average donation of {this.state.value} is ${this.state.donation} </p>
+              <p>The average donation of {this.state.value} is ${this.state.donation}.</p>
           </div>
         </Modal>
       </div>
