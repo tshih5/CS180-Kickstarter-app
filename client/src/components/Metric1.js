@@ -41,9 +41,9 @@ export default class PopUp extends Component {
 
   handleChange = (id, e) =>{
     if(id)
-      this.setState({value1: e});
+      this.state.value1 = e;
     else
-      this.setState({value0: e});
+      this.state.value0 = e;
   };
 
   getRatio = async values => {
@@ -84,7 +84,7 @@ export default class PopUp extends Component {
             </Select>
           </div>
           <div>
-            <p> The ratio of {this.state.value0} to {this.state.value1} projects is {this.state.ratio}% </p>
+            <p> The percentage of {this.state.value0} to {this.state.value1} projects is {this.state.ratio}% </p>
           </div>
         </Modal>
       </div>
