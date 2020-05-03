@@ -8,7 +8,7 @@ export default class PopUp extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {visible: false, value0: "Successful", value1: "Failed"};
+    this.state = {visible: false, value0: "successful", value1: "failed", ratio: 0};
         
     this.handleChange = this.handleChange.bind(this);
     this.handleOk = this.handleOk.bind(this);
@@ -25,6 +25,11 @@ export default class PopUp extends Component {
 
   handleOk = e => {
     console.log("value0: " , this.state.value0, " value1: ", this.state.value1);
+    var values = {"value0": this.state.value0, 
+                  "value1": this.state.value1,
+                  "ratio": 0
+                }
+    this.getRatio(values);
   };
 
   handleCancel = e => {
@@ -41,6 +46,12 @@ export default class PopUp extends Component {
       this.setState({value0: e});
   };
 
+  getRatio = async values => {
+    const result = await axios.post("http://localhost:9000/datasetpoint/getratio", values);
+    console.log(typeof result.data);
+    this.setState({ratio: result.data});
+  };
+
   render() {
     return (
       <div>
@@ -48,26 +59,32 @@ export default class PopUp extends Component {
           Project State Ratio
         </Button>
         <Modal
-          title="Ratio metric"
+          title="Percentage metric"
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
           okText="Submit"
         >
           <div>
+            <h6>This metric shows the percentage of one project state to another.</h6>
+          </div>
+          <div>
             <Select value={this.state.value0} onChange={(e) => this.handleChange(0, e)}>
-              <Option value="Failed">Failed</Option>
-              <Option value="Live">Live</Option>
-              <Option value="Successful">Successful</Option>
-              <Option value="Cancelled">Cancelled</Option>
+              <Option value="failed">Failed</Option>
+              <Option value="live">Live</Option>
+              <Option value="successful">Successful</Option>
+              <Option value="canceled">Cancelled</Option>
             </Select>
             <l> \ </l>
             <Select value={this.state.value1} onChange={(e) => this.handleChange(1, e)}>
-              <Option value="Failed">Failed</Option>
-              <Option value="Live">Live</Option>
-              <Option value="Successful">Successful</Option>
-              <Option value="Cancelled">Cancelled</Option>
+              <Option value="failed">Failed</Option>
+              <Option value="live">Live</Option>
+              <Option value="successful">Successful</Option>
+              <Option value="canceled">Cancelled</Option>
             </Select>
+          </div>
+          <div>
+            <p> The ratio of {this.state.value0} to {this.state.value1} projects is {this.state.ratio}% </p>
           </div>
         </Modal>
       </div>
