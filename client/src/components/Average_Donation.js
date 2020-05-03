@@ -66,12 +66,12 @@ export default class PopUp2 extends Component {
         >
           <div>
             <Select value={this.state.value} onChange={(e) => this.handleChange(0, e)}>
-              <Option value="Music">Music</Option>
+              {/*<Option value="Music">Music</Option>*/}
               <Option value="Food">Food</Option>
               <Option value="Design">Design</Option>
               <Option value="Games">Games</Option>
               <Option value="Publishing">Publishing</Option>
-              <Option value="Film & Video">Film and Video</Option>
+              {/*<Option value="Film & Video">Film and Video</Option>*/} 
               <Option value="Fashion">Fashion</Option>
               <Option value="Technology">Technology</Option>
               <Option value="Crafts">Crafts</Option>
@@ -79,7 +79,7 @@ export default class PopUp2 extends Component {
             </Select>
           </div>
           <div>
-              <p>The average donation of {this.state.value} is ${this.state.donation}.</p>
+              <p>The average donation of {this.state.value} is ${this.state.donation}</p>
           </div>
         </Modal>
       </div>

@@ -103,8 +103,9 @@ router.post("/getDonation", (req, res, next) => {
 		}
 	}
 	var donation = (money / count);
+	donation = donation.toFixed(2);
 	console.log(donation);
-	res.send(donation.toString());
+	res.send(donation);
 });
 
 //app.post("/update/", (req,res) => {
