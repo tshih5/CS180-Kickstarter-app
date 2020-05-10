@@ -56,6 +56,26 @@ table th.sort-desc::before {
   flex-direction: column;
   padding: 0px;
 }
+#wrapper {
+  width: 1000px;
+  overflow: hidden;
+}
+#first {
+  width:250px;
+  float:left; /* add this */
+}
+#second {
+  width:250px;
+  float:left;
+}
+#third {
+  width:250px;
+  float:left; /* add this */
+}
+#fourth {
+  width:250px;
+  float:left;
+}
 
 input {
   min-width:50px!important;

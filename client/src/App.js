@@ -138,11 +138,11 @@ function App() {
             <Breadcrumb.Item>App</Breadcrumb.Item>
           </Breadcrumb>
           <div className="site-layout-content">
-            <div className="metrics">
-              <StateRatio></StateRatio>
-              <AverageDonation>Average Donation</AverageDonation>
-              <MostPopular></MostPopular>
-              <SvF></SvF>
+            <div id="wrapper">
+              <div id="first"><StateRatio/></div>
+              <div id="second"><AverageDonation/></div>
+              <div id="third"><MostPopular/></div>
+              <div id="fourth"><SvF/></div>
             </div>
             &nbsp;
             <div><Button onClick={UpdateData}>Update Data</Button></div>
