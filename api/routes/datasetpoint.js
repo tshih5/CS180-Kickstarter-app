@@ -96,17 +96,80 @@ router.post("/getratio", (req, res, next) => {
 	var numVal1 = 0;
 	for(var i in data){
 		if(data[i].state == ratioData.value0){
-			numVal0 = numVal0 + 1;
+			numVal0++;
 		}
 		if(data[i].state == ratioData.value1){
-			numVal1 = numVal1 + 1;
+			numVal1++;
 		}
 	}
 	var ratio = 100 * (numVal0 / numVal1);
-	ratio = Math.round((ratio + Number.EPSILON) * 100) / 100
+	ratio = Math.round((ratio + Number.EPSILON) * 100) / 100;
 	res.send(ratio.toString());
 });
 
+router.post("/getsvf", (req, res, next) => {
+	var svfData = req.body;
+	console.log(svfData);
+	var successes = 0;
+	var fails = 0;
+	for(var i in data){
+		if((data[i].state == 'successful' || data[i].state == 'live') && data[i].main_category == svfData.category){
+			successes++;
+		}else if((data[i].state == 'failed' || data[i].state == 'canceled') && data[i].main_category == svfData.category){
+			fails++;
+		}
+	}
+	var ratio;
+	if(fails != 0){
+		ratio = 100 * (successes / fails);
+		ratio = Math.round((ratio + Number.EPSILON) * 100) / 100;
+	}else{
+		ratio = Infinity;
+	}
+	console.log("ratio is: ", ratio);
+	res.send(ratio.toString());
+});
+
+router.post("/getmostPopular", (req, res, next) => {
+	var popData = req.body;
+	console.log(popData);
+	var categories = [];
+	var amounts = [];
+	for(var i in data){
+		arridx = categories.indexOf(data[i].main_category);
+		if(arridx == -1){																	//category has not been added yet
+			categories.push(data[i].main_category);
+			if(popData.value == 0){
+				//get donation amount in $
+				amounts.push(parseFloat(data[i].usd_pledged) || 0);
+			}else{
+				amounts.push(parseFloat(data[i].backers) || 0);
+			}
+		}else{
+			if(popData.value == 0){
+				amounts[arridx] += parseFloat(data[i].usd_pledged) || 0;
+			}else{
+				amounts[arridx] += parseFloat(data[i].backers) || 0;
+			}
+		}
+	}
+	console.log(categories);
+	var max = 0;
+	var maxIdx = 0;
+	var total = 0;
+	for(var i in amounts){
+		total += amounts[i];
+		if(amounts[i] > max){
+			max = amounts[i];
+			maxIdx = i;
+		}
+	}
+	popData.amount = max.toFixed(2);
+	popData.total = total.toFixed(2);
+	popData.max_category = categories[maxIdx];
+	console.log(popData);
+	res.send(popData);
+});
 
 router.post("/getDonation", (req, res, next) => {
 	var donationData = req.body;
