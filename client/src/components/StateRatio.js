@@ -4,7 +4,7 @@ import axios from "axios";
 
 const { Option } = Select;
 
-export default class PopUp extends Component {
+export default class StateRatio extends Component {
 
   constructor(props) {
     super(props);
