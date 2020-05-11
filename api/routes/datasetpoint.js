@@ -192,6 +192,7 @@ router.post("/getDonation", (req, res, next) => {
 
 router.post("/getTop", (req, res, next) => {
 	var top = "";
+	//var top2 = "";
 	var countFood = 0;
 	var countDesign = 0;
 	var countGames = 0;
@@ -235,6 +236,29 @@ router.post("/getTop", (req, res, next) => {
 	}
 	if((countGames > countFood) && (countGames > countDesign) && (countGames > countPublishing) && (countGames > countFashion) && (countGames > countTechnology) && (countGames > countCrafts) && (countGames > countArt)) {
 		top = "Games"
+
+		/*if((countFood > countDesign) && (countFood > countPublishing) && (countFood > countFashion) && (countFood > countTechnology) && (countFood > countCrafts) && (countFood > countArt)) {
+			top2 = "Food"
+		}
+		if((countDesign > countFood) && (countDesign > countPublishing) && (countDesign > countFashion) && (countDesign > countTechnology) && (countDesign > countCrafts) && (countDesign > countArt)) {
+			top2 = "Design"
+		}
+		if((countPublishing > countFood) && (countPublishing > countDesign) && (countPublishing > countFashion) && (countPublishing > countTechnology) && (countPublishing > countCrafts) && (countPublishing > countArt)) {
+			top2 = "Publishing"
+		}
+		if((countFashion > countFood) && (countFashion > countPublishing) && (countFashion > countDesign) && (countFashion > countTechnology) && (countFashion > countCrafts) && (countFashion > countArt)) {
+			top2 = "Fashion"
+		}
+		if((countTechnology > countFood) && (countTechnology > countPublishing) && (countTechnology > countFashion) && (countTechnology > countDesign) && (countTechnology > countCrafts) && (countTechnology > countArt)) {
+			top2 = "Technology"
+		}
+		if((countCrafts > countFood) && (countCrafts > countPublishing) && (countCrafts > countFashion) && (countCrafts > countTechnology) && (countCrafts > countDesign) && (countCrafts > countArt)) {
+			top2 = "Crafts"
+		}
+		if((countArt > countFood) && (countArt > countPublishing) && (countArt > countFashion) && (countArt > countTechnology) && (countArt > countCrafts) && (countArt > countDesign)) {
+			top2 = "Art"
+		}
+			*/
 	}
 	if((countPublishing > countFood) && (countPublishing > countGames) && (countPublishing > countDesign) && (countPublishing > countFashion) && (countPublishing > countTechnology) && (countPublishing > countCrafts) && (countPublishing > countArt)) {
 		top = "Publishing"
@@ -252,8 +276,8 @@ router.post("/getTop", (req, res, next) => {
 		top = "Art"
 	}
 
-	console.log(top);
-	res.send(top);
+	console.log(top)//, top2);
+	res.send(top)//, top2);
 
 });
 
