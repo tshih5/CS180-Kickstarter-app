@@ -190,6 +190,92 @@ router.post("/getDonation", (req, res, next) => {
 	res.send(donation);
 });
 
+router.post("/getTop", (req, res, next) => {
+	var top = "";
+	var countFood = 0;
+	var countDesign = 0;
+	var countGames = 0;
+	var countPublishing = 0;
+	var countFashion = 0;
+	var countTechnology = 0;
+	var countCrafts = 0;
+	var countArt = 0;
+
+	for(var i in data) {
+		if(data[i].main_category == "Food") {
+			countFood++;
+		}
+		if(data[i].main_category == "Design") {
+			countDesign++;
+		}
+		if(data[i].main_category == "Games") {
+			countGames++;
+		}
+		if(data[i].main_category == "Publishing") {
+			countPublishing++;
+		}
+		if(data[i].main_category == "Fashion") {
+			countFashion++;
+		}
+		if(data[i].main_category == "Technology") {
+			countTechnology++;
+		}
+		if(data[i].main_category == "Crafts") {
+			countCrafts++;
+		}
+		if(data[i].main_category == "Art") {
+			countArt++;
+		}
+	}
+	if((countFood > countDesign) && (countFood > countGames) && (countFood > countPublishing) && (countFood > countFashion) && (countFood > countTechnology) && (countFood > countCrafts) && (countFood > countArt)) {
+		top = "Food"
+	}
+	if((countDesign > countFood) && (countDesign > countGames) && (countDesign > countPublishing) && (countDesign > countFashion) && (countDesign > countTechnology) && (countDesign > countCrafts) && (countDesign > countArt)) {
+		top = "Design"
+	}
+	if((countGames > countFood) && (countGames > countDesign) && (countGames > countPublishing) && (countGames > countFashion) && (countGames > countTechnology) && (countGames > countCrafts) && (countGames > countArt)) {
+		top = "Games"
+	}
+	if((countPublishing > countFood) && (countPublishing > countGames) && (countPublishing > countDesign) && (countPublishing > countFashion) && (countPublishing > countTechnology) && (countPublishing > countCrafts) && (countPublishing > countArt)) {
+		top = "Publishing"
+	}
+	if((countFashion > countFood) && (countFashion > countGames) && (countFashion > countPublishing) && (countFashion > countDesign) && (countFashion > countTechnology) && (countFashion > countCrafts) && (countFashion > countArt)) {
+		top = "Fashion"
+	}
+	if((countTechnology > countFood) && (countTechnology > countGames) && (countTechnology > countPublishing) && (countTechnology > countFashion) && (countTechnology > countDesign) && (countTechnology > countCrafts) && (countTechnology > countArt)) {
+		top = "Technology"
+	}
+	if((countCrafts > countFood) && (countCrafts > countGames) && (countCrafts > countPublishing) && (countCrafts > countFashion) && (countCrafts > countTechnology) && (countCrafts > countDesign) && (countCrafts > countArt)) {
+		top = "Crafts"
+	}
+	if((countArt > countFood) && (countArt > countGames) && (countArt > countPublishing) && (countArt > countFashion) && (countArt > countTechnology) && (countArt > countCrafts) && (countArt > countDesign)) {
+		top = "Art"
+	}
+
+	console.log(top);
+	res.send(top);
+
+});
+
+router.post("/getCost", (req, res, next) => {
+	var avgcost = req.body;
+	console.log(avgcost);
+
+	var goal = 0.00
+	var count = 0;
+
+	for(var i in data) {
+		if(data[i].main_category == avgcost.value) {
+			goal = goal + parseInt(data[i].goal)
+			count++;
+		}
+	}
+	var totalAvg = (goal / count);
+	totalAvg = totalAvg.toFixed(2);
+	console.log(totalAvg);
+	res.send(totalAvg);
+});
+
 //app.post("/update/", (req,res) => {
 module.exports = router;	
 
