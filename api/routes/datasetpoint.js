@@ -191,11 +191,26 @@ router.post("/getDonation", (req, res, next) => {
 });
 
 router.post("/getTop", (req, res, next) => {
-
+	//var top = req.body;
 });
 
 router.post("/getCost", (req, res, next) => {
+	var avgcost = req.body;
+	console.log(avgcost);
 
+	var goal = 0.00
+	var count = 0;
+
+	for(var i in data) {
+		if(data[i].main_category == avgcost.value) {
+			goal = goal + parseInt(data[i].goal)
+			count++;
+		}
+	}
+	var totalAvg = (goal / count);
+	totalAvg = totalAvg.toFixed(2);
+	console.log(totalAvg);
+	res.send(totalAvg);
 });
 
 //app.post("/update/", (req,res) => {
