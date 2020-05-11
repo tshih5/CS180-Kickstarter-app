@@ -190,6 +190,14 @@ router.post("/getDonation", (req, res, next) => {
 	res.send(donation);
 });
 
+router.post("/getTop", (req, res, next) => {
+
+});
+
+router.post("/getCost", (req, res, next) => {
+
+});
+
 //app.post("/update/", (req,res) => {
 module.exports = router;	
 

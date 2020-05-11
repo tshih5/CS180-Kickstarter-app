@@ -2,12 +2,14 @@ import ReactTable from "./components/Table";
 import StateRatio from "./components/StateRatio"
 import AverageDonation from "./components/Average_Donation"
 import SvF from "./components/SvF"
+import AverageCost from "./components/"
 import "./App.css";
 import axios from "axios";
 import React, {Component, useState, useEffect, useMemo} from 'react';
 import { Modal, Form, Button, Input, Layout, Menu, Breadcrumb } from 'antd';
 import logo from './logo.png';
 import MostPopular from "./components/MostPopular";
+import TopCategories from "./components/Top_Categories";
 
 const { Header, Content, Footer } = Layout;
 
@@ -143,6 +145,8 @@ function App() {
               <div id="second"><AverageDonation/></div>
               <div id="third"><MostPopular/></div>
               <div id="fourth"><SvF/></div>
+              <div id="fifth"><AverageCost/></div>
+              <div id="sixth"><TopCategories/></div>
             </div>
             &nbsp;
             <div><Button onClick={UpdateData}>Update Data</Button></div>
