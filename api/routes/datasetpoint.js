@@ -499,22 +499,48 @@ router.post("/getTop", (req, res, next) => {
 });
 
 router.post("/getCost", (req, res, next) => {
-	var avgcost = req.body;
-	console.log(avgcost);
+	var avgcostt = req.body;
 
 	var goal = 0.00
 	var count = 0;
+	var largest = 0;
 
 	for(var i in data) {
-		if(data[i].main_category == avgcost.value) {
+		if(data[i].main_category == avgcostt.value) {
 			goal = goal + parseInt(data[i].goal)
 			count++;
 		}
 	}
 	var totalAvg = (goal / count);
 	totalAvg = totalAvg.toFixed(2);
-	console.log(totalAvg);
-	res.send(totalAvg);
+
+	var moneyy = 0.00;
+	var countt = 0;
+
+	for(var j in data) {
+		if(data[j].main_category == avgcostt.value) {
+			moneyy = moneyy + parseInt(data[j].usd_pledged);
+			countt++;
+		}
+	}
+	var donation = (moneyy / countt);
+	donation = donation.toFixed(2);
+
+	var percentage = (donation / totalAvg);
+	percentage = percentage.toFixed(2);
+
+	for(var k in data) {
+		if(data[k].main_category == avgcostt.value) {
+			if(largest < parseInt(data[k].goal)){
+				largest = parseInt(data[k].goal)
+			}
+		}
+	}
+
+	avgcostt.avgcost = totalAvg;
+	avgcostt.percentMet = percentage;
+	avgcostt.large = largest;
+	res.send(avgcostt);
 });
 
 //app.post("/update/", (req,res) => {
