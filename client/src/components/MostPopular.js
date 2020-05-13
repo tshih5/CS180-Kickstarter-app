@@ -78,13 +78,12 @@ export default class MostPopular extends Component {
           </div>
           <div>
             <p> The category with the {this.state.value ? "Most Donators": "Highest Donations"} is {"\"" + this.state.max_category  + "\""} with {this.state.value ? "": "$"}{this.state.amount}{this.state.value ? " backers ": " pledged "} out of {this.state.value ? "": "$"}{this.state.total} total</p>
-            <p>
-              <ul>
-                {this.state.projects.map(item => {
-                return <li>{item.name} with {this.state.value ? "": "$"}{this.state.value ? item.backers: item.usd_pledged} {this.state.value ? "backers": "pledged"}</li>;
-                })}
-              </ul>
-            </p>
+            <h3>{this.state.max_category == "" ? "": "Projects in " + this.state.max_category}</h3>
+            <ul>
+              {this.state.projects.map(item => {
+              return <li>{item.name} with {this.state.value ? "": "$"}{this.state.value ? item.backers: item.usd_pledged} {this.state.value ? "backers": "pledged"}</li>;
+              })}
+            </ul>
           </div>
         </Modal>
       </div>
