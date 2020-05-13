@@ -81,7 +81,7 @@ export default class MostPopular extends Component {
             <h3>{this.state.max_category == "" ? "": "Projects in " + this.state.max_category}</h3>
             <ul>
               {this.state.projects.map(item => {
-              return <li>{item.name} with {this.state.value ? "": "$"}{this.state.value ? item.backers: item.usd_pledged} {this.state.value ? "backers": "pledged"}</li>;
+              return <li>{item.name} with {this.state.value ? "": "$"}{this.state.value ? item.backers: (parseFloat(item.usd_pledged) || 0).toFixed(2)} {this.state.value ? "backers": "pledged"}</li>;
               })}
             </ul>
           </div>
