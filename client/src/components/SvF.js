@@ -8,7 +8,7 @@ export default class SvF extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {visible: false, category: "Photography", ratio: 0};
+    this.state = {visible: false, category: "Photography", ratio: 0, success: [], fail: []};
         
     this.handleChange = this.handleChange.bind(this);
     this.handleOk = this.handleOk.bind(this);
@@ -26,7 +26,9 @@ export default class SvF extends Component {
   handleOk = e => {
     console.log("category: " , this.state.category, " ratio: ", this.state.ratio);
     var values = {"category": this.state.category, 
-                  "ratio": 0
+                  "ratio": 0,
+                  "success": [],
+                  "fail": []
                 }
     this.getSvF(values);
   };
@@ -45,7 +47,9 @@ export default class SvF extends Component {
   getSvF = async values => {
     const result = await axios.post("http://localhost:9000/datasetpoint/getsvf", values);
     console.log(typeof result.data);
-    this.setState({ratio: result.data});
+    this.setState({ratio: result.data.ratio});
+    this.setState({success: result.data.success});
+    this.setState({fail: result.data.fail});
   };
 
   render() {
@@ -85,6 +89,18 @@ export default class SvF extends Component {
           </div>
           <div>
             <p> The percentage of Success vs Failure Rate for {this.state.category} is {this.state.ratio}% </p>
+            <h3>Successful Projects</h3>
+            <ul>
+                {this.state.success.map(item => {
+                return <li>{item.name} with {item.backers} backers</li>;
+                })}
+            </ul>
+            <h3>Failed Projects</h3>
+            <ul>
+                {this.state.fail.map(item => {
+                return <li>{item.name} with {item.backers} backers</li>;
+                })}
+            </ul>
           </div>
         </Modal>
       </div>

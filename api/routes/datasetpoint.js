@@ -115,19 +115,21 @@ router.post("/getsvf", (req, res, next) => {
 	for(var i in data){
 		if((data[i].state == 'successful' || data[i].state == 'live') && data[i].main_category == svfData.category){
 			successes++;
+			svfData.success.push(data[i]);
 		}else if((data[i].state == 'failed' || data[i].state == 'canceled') && data[i].main_category == svfData.category){
 			fails++;
+			svfData.fail.push(data[i]);
 		}
 	}
 	var ratio;
 	if(fails != 0){
 		ratio = 100 * (successes / fails);
-		ratio = Math.round((ratio + Number.EPSILON) * 100) / 100;
+		svfData.ratio = Math.round((ratio + Number.EPSILON) * 100) / 100;
 	}else{
-		ratio = Infinity;
+		svfData.ratio = Infinity;
 	}
-	console.log("ratio is: ", ratio);
-	res.send(ratio.toString());
+	console.log("ratio is: ", svfData.ratio);
+	res.send(svfData);
 });
 
 router.post("/getmostPopular", (req, res, next) => {
@@ -162,6 +164,12 @@ router.post("/getmostPopular", (req, res, next) => {
 		if(amounts[i] > max){
 			max = amounts[i];
 			maxIdx = i;
+		}
+	}
+	for(var i in data){
+		if(data[i].main_category == categories[maxIdx]){
+			popData.projects.push(data[i]);
+			console.log(data[i].name);
 		}
 	}
 	popData.amount = max.toFixed(2);
