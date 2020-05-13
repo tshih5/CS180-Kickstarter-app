@@ -54,7 +54,7 @@ export default class AverageDonation extends Component {
   render() {
     return (
       <div>
-        <Button size="large" onClick={this.showModal}>
+        <Button size="large" type="primary" onClick={this.showModal}>
           Average Donation Raised
         </Button>
         <Modal

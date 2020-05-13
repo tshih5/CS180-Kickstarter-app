@@ -54,8 +54,8 @@ export default class AverageCost extends Component {
   render() {
     return (
       <div>
-        <Button size="large" onClick={this.showModal}>
-          Average Project Ask Amount (Cost)
+        <Button size="large"  type="primary" onClick={this.showModal}>
+          Average Project Cost
         </Button>
         <Modal
           title="Average Amount of Money Raised by Category"

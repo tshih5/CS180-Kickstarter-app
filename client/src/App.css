@@ -76,6 +76,14 @@ table th.sort-desc::before {
   width:250px;
   float:left;
 }
+#fifth {
+  width:250px;
+  float:left;
+}
+#sixth {
+  width:250px;
+  float: left;
+}
 
 input {
   min-width:50px!important;
