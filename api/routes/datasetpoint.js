@@ -181,10 +181,12 @@ router.post("/getmostPopular", (req, res, next) => {
 
 router.post("/getDonation", (req, res, next) => {
 	var donationData = req.body;
-	console.log(donationData);
 	
 	var money = 0.00;
 	var count = 0;
+	var backercount = 0;
+	var backerdonates = 0;
+	var arr2 = [];
 
 	for(var i in data) {
 		if(data[i].main_category == donationData.value) {
@@ -192,10 +194,29 @@ router.post("/getDonation", (req, res, next) => {
 			count++;
 		}
 	}
-	var donation = (money / count);
-	donation = donation.toFixed(2);
-	console.log(donation);
-	res.send(donation);
+
+	for(var j in data) {
+		if(data[j].main_category == donationData.value) {
+			backercount = backercount + parseInt(data[j].backers);
+		}
+	}
+	
+	var donations = (money / count);
+	donations = donations.toFixed(2);
+	arr2[0] = parseInt(donations);
+	
+	backerdonates = (donations / backercount);
+	backerdonates = backerdonates.toFixed(2);
+	arr2[1] = parseInt(backercount);
+	arr2[2] = parseInt(backerdonates);
+
+	console.log(arr2);
+	donationData.donationss = arr2[0];
+	donationData.backers = arr2[1];
+	donationData.backerdonate = arr2[2];
+
+	console.log(donationData);
+	res.send(donationData);
 });
 
 router.post("/getTop", (req, res, next) => {
