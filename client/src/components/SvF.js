@@ -45,11 +45,14 @@ export default class SvF extends Component {
   };
 
   getSvF = async values => {
+    var startTime = new Date();
     const result = await axios.post("http://localhost:9000/datasetpoint/getsvf", values);
-    console.log(typeof result.data);
     this.setState({ratio: result.data.ratio});
     this.setState({success: result.data.success});
     this.setState({fail: result.data.fail});
+    var endTime = new Date();
+    var timeDiff = endTime - startTime;
+    console.log("Response took " + timeDiff + "ms");
   };
 
   render() {

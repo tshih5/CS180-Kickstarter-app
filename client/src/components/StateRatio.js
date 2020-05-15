@@ -47,9 +47,13 @@ export default class StateRatio extends Component {
   };
 
   getRatio = async values => {
+    var startTime = new Date();
     const result = await axios.post("http://localhost:9000/datasetpoint/getratio", values);
     console.log(typeof result.data);
     this.setState({ratio: result.data});
+    var endTime = new Date();
+    var timeDiff = endTime - startTime;
+    console.log("Response took " + timeDiff + "ms");
   };
 
   render() {

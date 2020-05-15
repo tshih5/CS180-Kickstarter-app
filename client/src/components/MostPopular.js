@@ -46,12 +46,15 @@ export default class MostPopular extends Component {
   };
 
   getMostPopular = async values => {
+    var startTime = new Date();
     const result = await axios.post("http://localhost:9000/datasetpoint/getmostpopular", values);
-    console.log(result.data);
     this.setState({amount: result.data.amount});
     this.setState({total: result.data.total});
     this.setState({max_category: result.data.max_category});
     this.setState({projects: result.data.projects});
+    var endTime = new Date();
+    var timeDiff = endTime - startTime;
+    console.log("Response took " + timeDiff + "ms");
   };
 
   render() {
