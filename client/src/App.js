@@ -4,6 +4,8 @@ import AverageDonation from "./components/Average_Donation"
 import SvF from "./components/SvF"
 import AverageCost from "./components/Average_Cost"
 import TopCategories from "./components/Top_Categories"
+import ByLocation from "./components/byLocation"
+import ByYear from "./components/byYear"
 import "./App.css";
 import axios from "axios";
 import React, {Component, useState, useEffect, useMemo} from 'react';
@@ -147,6 +149,8 @@ function App() {
               <div id="fourth"><SvF/></div>
               <div id="fifth"><AverageCost/></div>
               <div id="sixth"><TopCategories/></div>
+              <div id="seventh"><ByLocation/></div>
+              <div id="eighth"><ByYear/></div>
             </div>
             &nbsp;
             <div><Button onClick={UpdateData}>Update Data</Button></div>

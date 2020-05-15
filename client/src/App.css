@@ -57,31 +57,39 @@ table th.sort-desc::before {
   padding: 0px;
 }
 #wrapper {
-  width: 1000px;
+  width: 1200px;
   overflow: hidden;
 }
 #first {
-  width:250px;
+  width:300px;
   float:left; /* add this */
 }
 #second {
-  width:250px;
+  width:300px;
   float:left;
 }
 #third {
-  width:250px;
+  width:300px;
   float:left; /* add this */
 }
 #fourth {
-  width:250px;
+  width:300px;
   float:left;
 }
 #fifth {
-  width:250px;
+  width:300px;
   float:left;
 }
 #sixth {
-  width:250px;
+  width:300px;
+  float: left;
+}
+#seventh {
+  width:300px;
+  float: left;
+}
+#eighth {
+  width:300px;
   float: left;
 }
 
