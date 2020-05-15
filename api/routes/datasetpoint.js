@@ -181,10 +181,12 @@ router.post("/getmostPopular", (req, res, next) => {
 
 router.post("/getDonation", (req, res, next) => {
 	var donationData = req.body;
-	console.log(donationData);
 	
 	var money = 0.00;
 	var count = 0;
+	var backercount = 0;
+	var backerdonates = 0;
+	var arr2 = [];
 
 	for(var i in data) {
 		if(data[i].main_category == donationData.value) {
@@ -192,14 +194,242 @@ router.post("/getDonation", (req, res, next) => {
 			count++;
 		}
 	}
-	var donation = (money / count);
-	donation = donation.toFixed(2);
-	console.log(donation);
-	res.send(donation);
+
+	for(var j in data) {
+		if(data[j].main_category == donationData.value) {
+			backercount = backercount + parseInt(data[j].backers);
+		}
+	}
+	
+	var donations = (money / count);
+	donations = donations.toFixed(2);
+	arr2[0] = parseInt(donations);
+	
+	backerdonates = (donations / backercount);
+	backerdonates = backerdonates.toFixed(2);
+	arr2[1] = parseInt(backercount);
+	arr2[2] = parseInt(backerdonates);
+
+	console.log(arr2);
+	donationData.donationss = arr2[0];
+	donationData.backers = arr2[1];
+	donationData.backerdonate = arr2[2];
+
+	console.log(donationData);
+	res.send(donationData);
 });
 
 router.post("/getTop", (req, res, next) => {
-	var top = "";
+	var top = req.body
+
+	var topc1 = "";
+	var topc2 = "";
+	var topc3 = "";
+	var topc4 = "";
+	var topc5 = "";
+
+	var cFood = 0;
+	var cDesign = 0;
+	var cGames = 0;
+	var cPublishing = 0;
+	var cFashion = 0;
+	var cTechnology = 0;
+	var cCrafts = 0;
+	var cArt = 0;
+
+	for(var i in data){
+		if(data[i].main_category == "Food") {
+			cFood++;
+		}
+		if(data[i].main_category == "Design") {
+			cDesign++;
+		}
+		if(data[i].main_category == "Games") {
+			cGames++;
+		}
+		if(data[i].main_category == "Publishing") {
+			cPublishing++;
+		}
+		if(data[i].main_category == "Fashion") {
+			cFashion++;
+		}
+		if(data[i].main_category == "Technology") {
+			cTechnology++;
+		}
+		if(data[i].main_category == "Crafts") {
+			cCrafts++;
+		}
+		if(data[i].main_category == "Art") {
+			cArt++;
+		}
+	}
+
+	var arr = [];
+	arr[0] = cFood;
+	arr[1] = cDesign;
+	arr[2] = cGames;
+	arr[3] = cPublishing;
+	arr[4] = cFashion;
+	arr[5] = cTechnology;
+	arr[6] = cCrafts;
+	arr[7] = cArt;
+
+	arr.sort(function(a, b){return b-a});
+
+	if(arr[0] == cFood) {
+		topc1 = "Food"
+	}
+	if(arr[1] == cFood) {
+		topc2 = "Food"
+	}
+	if(arr[2] == cFood) {
+		topc3 = "Food"
+	}
+	if(arr[3] == cFood) {
+		topc4 = "Food"
+	}
+	if(arr[4] == cFood) {
+		topc5 = "Food"
+	}
+	if(arr[0] == cDesign) {
+		topc1 = "Design"
+	}
+	if(arr[1] == cDesign) {
+		topc2 = "Design"
+	}
+	if(arr[2] == cDesign) {
+		topc3 = "Design"
+	}
+	if(arr[3] == cDesign) {
+		topc4 = "Design"
+	}
+	if(arr[4] == cDesign) {
+		topc5 = "Design"
+	}
+	if(arr[0] == cGames) {
+		topc1 = "Games"
+	}
+	if(arr[1] == cGames) {
+		topc2 = "Games"
+	}
+	if(arr[2] == cGames) {
+		topc3 = "Games"
+	}
+	if(arr[3] == cGames) {
+		topc4 = "Games"
+	}
+	if(arr[4] == cGames) {
+		topc5 = "Games"
+	}
+	if(arr[0] == cPublishing) {
+		topc1 = "Publishing"
+	}
+	if(arr[1] == cPublishing) {
+		topc2 = "Publishing"
+	}
+	if(arr[2] == cPublishing) {
+		topc3 = "Publishing"
+	}
+	if(arr[3] == cPublishing) {
+		topc4 = "Publishing"
+	}
+	if(arr[4] == cPublishing) {
+		topc5 = "Publishing"
+	}
+	if(arr[0] == cFashion) {
+		topc1 = "Fashion"
+	}
+	if(arr[1] == cFashion) {
+		topc2 = "Fashion"
+	}
+	if(arr[2] == cFashion) {
+		topc3 = "Fashion"
+	}
+	if(arr[3] == cFashion) {
+		topc4 = "Fashion"
+	}
+	if(arr[4] == cFashion) {
+		topc5 = "Fashion"
+	}
+	if(arr[0] == cTechnology) {
+		topc1 = "Technology"
+	}
+	if(arr[1] == cTechnology) {
+		topc2 = "Technology"
+	}
+	if(arr[2] == cTechnology) {
+		topc3 = "Technology"
+	}
+	if(arr[3] == cTechnology) {
+		topc4 = "Technology"
+	}
+	if(arr[4] == cTechnology) {
+		topc5 = "Technology"
+	}
+	if(arr[0] == cCrafts) {
+		topc1 = "Crafts"
+	}
+	if(arr[1] == cCrafts) {
+		topc2 = "Crafts"
+	}
+	if(arr[2] == cCrafts) {
+		topc3 = "Crafts"
+	}
+	if(arr[3] == cCrafts) {
+		topc4 = "Crafts"
+	}
+	if(arr[4] == cCrafts) {
+		topc5 = "Crafts"
+	}
+	if(arr[0] == cArt) {
+		topc1 = "Art"
+	}
+	if(arr[1] == cArt) {
+		topc2 = "Art"
+	}
+	if(arr[2] == cArt) {
+		topc3 = "Art"
+	}
+	if(arr[3] == cArt) {
+		topc4 = "Art"
+	}
+	if(arr[4] == cArt) {
+		topc5 = "Art"
+	}
+
+	console.log(arr);
+	console.log(topc1);
+	console.log(topc2);
+	console.log(topc3);
+	console.log(topc4);
+	console.log(topc5);
+
+	top.top1 = topc1;
+	top.top2 = topc2;
+	top.top3 = topc3;
+	top.top4 = topc4;
+	top.top5 = topc5;
+
+	top.count1 = arr[0];
+	top.count2 = arr[1];
+	top.count3 = arr[2];
+	top.count4 = arr[3];
+	top.count5 = arr[4];
+
+	console.log(top.count1);
+
+	console.log(top);
+	res.send(top);
+
+
+
+
+
+
+
+
+
+	/*var top = "";
 	//var top2 = "";
 	var countFood = 0;
 	var countDesign = 0;
@@ -267,7 +497,7 @@ router.post("/getTop", (req, res, next) => {
 			top2 = "Art"
 		}
 			*/
-	}
+	/*}
 	if((countPublishing > countFood) && (countPublishing > countGames) && (countPublishing > countDesign) && (countPublishing > countFashion) && (countPublishing > countTechnology) && (countPublishing > countCrafts) && (countPublishing > countArt)) {
 		top = "Publishing"
 	}
@@ -286,26 +516,52 @@ router.post("/getTop", (req, res, next) => {
 
 	console.log(top)//, top2);
 	res.send(top)//, top2);
-
+ */
 });
 
 router.post("/getCost", (req, res, next) => {
-	var avgcost = req.body;
-	console.log(avgcost);
+	var avgcostt = req.body;
 
 	var goal = 0.00
 	var count = 0;
+	var largest = 0;
 
 	for(var i in data) {
-		if(data[i].main_category == avgcost.value) {
+		if(data[i].main_category == avgcostt.value) {
 			goal = goal + parseInt(data[i].goal)
 			count++;
 		}
 	}
 	var totalAvg = (goal / count);
 	totalAvg = totalAvg.toFixed(2);
-	console.log(totalAvg);
-	res.send(totalAvg);
+
+	var moneyy = 0.00;
+	var countt = 0;
+
+	for(var j in data) {
+		if(data[j].main_category == avgcostt.value) {
+			moneyy = moneyy + parseInt(data[j].usd_pledged);
+			countt++;
+		}
+	}
+	var donation = (moneyy / countt);
+	donation = donation.toFixed(2);
+
+	var percentage = (donation / totalAvg);
+	percentage = percentage.toFixed(2);
+
+	for(var k in data) {
+		if(data[k].main_category == avgcostt.value) {
+			if(largest < parseInt(data[k].goal)){
+				largest = parseInt(data[k].goal)
+			}
+		}
+	}
+
+	avgcostt.avgcost = totalAvg;
+	avgcostt.percentMet = percentage;
+	avgcostt.large = largest;
+	res.send(avgcostt);
 });
 
 //app.post("/update/", (req,res) => {

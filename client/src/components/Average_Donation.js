@@ -8,7 +8,7 @@ export default class AverageDonation extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {visible: false, value: "Project Category", donation: 0};
+    this.state = {visible: false, value: "Project Category", donationss: 0, backers: 0, backerdonate: 0};
         
     this.handleChange = this.handleChange.bind(this);
     this.handleOk = this.handleOk.bind(this);
@@ -25,7 +25,11 @@ export default class AverageDonation extends Component {
   handleOk = e => {
     //route to calculation function?
    console.log("value: ", this.state.value);
-   var values = {"value": this.state.value, "donation": 0}
+   var values = {"value": this.state.value,
+                 "donationss": 0,
+                 "backers": 0,
+                 "backerdonate": 0
+                }
    console.log(values);
    this.getDonation(values);
   };
@@ -48,13 +52,15 @@ export default class AverageDonation extends Component {
   getDonation = async values => {
       const result = await axios.post("http://localhost:9000/datasetpoint/getDonation", values);
       console.log(typeof result.data);
-      this.setState({donation: result.data});
+      this.setState({donationss: result.data.donationss});
+      this.setState({backers: result.data.backers});
+      this.setState({backerdonate: result.data.backerdonate});
   }
 
   render() {
     return (
       <div>
-        <Button size="large" onClick={this.showModal}>
+        <Button size="large" type="primary" onClick={this.showModal}>
           Average Donation Raised
         </Button>
         <Modal
@@ -79,7 +85,10 @@ export default class AverageDonation extends Component {
             </Select>
           </div>
           <div>
-              <p>The average donation of {this.state.value} is ${this.state.donation}</p>
+              <p>The average donation of {this.state.value} is ${this.state.donationss}</p>
+              <p>The total number of backers for {this.state.value} is {this.state.backers}</p>
+              <h5>How much would each backer be donating to {this.state.value} on average given these quantities?</h5>
+              <p>For {this.state.value}, since there is an average of {this.state.backers} backers with an average overall category donation of ${this.state.donationss}, each backer would be donating roughly about ${this.state.backerdonate}.</p>
           </div>
         </Modal>
       </div>

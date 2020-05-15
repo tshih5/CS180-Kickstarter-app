@@ -8,7 +8,7 @@ export default class AverageCost extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {visible: false, value: "Project Category", cost: 0};
+    this.state = {visible: false, value: "Project Category", avgcost: 0, percentMet: 0.00, large: 0};
         
     this.handleChange = this.handleChange.bind(this);
     this.handleOk = this.handleOk.bind(this);
@@ -25,7 +25,11 @@ export default class AverageCost extends Component {
   handleOk = e => {
     //route to calculation function?
    console.log("value: ", this.state.value);
-   var values = {"value": this.state.value, "avgcost": 0}
+   var values = {"value": this.state.value,
+                 "avgcost": 0,
+                 "percentMet": 0.00,
+                 "large": 0
+                }
    console.log(values);
    this.getCost(values);
   };
@@ -48,14 +52,16 @@ export default class AverageCost extends Component {
   getCost = async values => {
       const result = await axios.post("http://localhost:9000/datasetpoint/getCost", values);
       console.log(typeof result.data);
-      this.setState({avgcost: result.data});
+      this.setState({avgcost: result.data.avgcost});
+      this.setState({percentMet: result.data.percentMet});
+      this.setState({large: result.data.large});
   }
 
   render() {
     return (
       <div>
-        <Button size="large" onClick={this.showModal}>
-          Average Project Ask Amount (Cost)
+        <Button size="large"  type="primary" onClick={this.showModal}>
+          Average Project Cost
         </Button>
         <Modal
           title="Average Amount of Money Raised by Category"
@@ -79,7 +85,10 @@ export default class AverageCost extends Component {
             </Select>
           </div>
           <div>
-              <p>The average cost of {this.state.value} is ${this.state.avgcost}</p>
+              <p>The average cost of {this.state.value} is ${this.state.avgcost}. This is the amount on average project creators ask for {this.state.value}.</p>
+              <h5>How much of the ask for {this.state.value} is actually met on average?</h5>
+              <p>For {this.state.value}, out of an average cost of ${this.state.avgcost}, about {this.state.percentMet}% of the total average project cost is met overall.</p>
+              <p>The largest project cost for {this.state.value} is ${this.state.large} for reference.</p>
           </div>
         </Modal>
       </div>

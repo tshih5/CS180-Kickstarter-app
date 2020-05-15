@@ -58,7 +58,7 @@ export default class SvF extends Component {
   render() {
     return (
       <div>
-        <Button size="large" onClick={this.showModal}>
+        <Button size="large" type="primary" onClick={this.showModal}>
           Success vs. Fail
         </Button>
         <Modal
