@@ -60,7 +60,7 @@ export default class MostPopular extends Component {
   render() {
     return (
       <div>
-        <Button size="large" type="primary" onClick={this.showModal}>
+        <Button size="large"  onClick={this.showModal}>
           Most Popular
         </Button>
         <Modal

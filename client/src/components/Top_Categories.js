@@ -69,7 +69,7 @@ export default class TopCategories extends Component {
   render() {
     return (
       <div>
-        <Button size="large" type="primary" onClick={this.showModal}>
+        <Button size="large" onClick={this.showModal}>
           Most Common Projects (Ranked)
         </Button>
         <Modal

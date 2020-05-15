@@ -59,7 +59,7 @@ export default class StateRatio extends Component {
   render() {
     return (
       <div>
-        <Button size="large" type="primary" onClick={this.showModal}>
+        <Button size="large" onClick={this.showModal}>
           Project State Ratio
         </Button>
         <Modal
