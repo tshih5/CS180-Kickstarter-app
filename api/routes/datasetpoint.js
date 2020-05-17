@@ -109,14 +109,14 @@ router.post("/getratio", (req, res, next) => {
 
 router.post("/getsvf", (req, res, next) => {
 	var svfData = req.body;
-	console.log(svfData);
+	//console.log(svfData);
 	var successes = 0;
 	var fails = 0;
 	for(var i in data){
 		if((data[i].state == 'successful' || data[i].state == 'live') && data[i].main_category == svfData.category){
 			successes++;
 			svfData.success.push(data[i]);
-		}else if((data[i].state == 'failed' || data[i].state == 'canceled' || data[i].state == 'undefined') && data[i].main_category == svfData.category){
+		}else if(data[i].main_category == svfData.category){
 			fails++;
 			svfData.fail.push(data[i]);
 		}
@@ -128,7 +128,7 @@ router.post("/getsvf", (req, res, next) => {
 	}else{
 		svfData.ratio = Infinity;
 	}
-	console.log("ratio is: ", svfData.ratio);
+	//console.log("ratio is: ", svfData.ratio);
 	res.send(svfData);
 });
 
