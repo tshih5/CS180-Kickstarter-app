@@ -116,7 +116,7 @@ router.post("/getsvf", (req, res, next) => {
 		if((data[i].state == 'successful' || data[i].state == 'live') && data[i].main_category == svfData.category){
 			successes++;
 			svfData.success.push(data[i]);
-		}else if((data[i].state == 'failed' || data[i].state == 'canceled') && data[i].main_category == svfData.category){
+		}else if((data[i].state == 'failed' || data[i].state == 'canceled' || data[i].state == 'undefined') && data[i].main_category == svfData.category){
 			fails++;
 			svfData.fail.push(data[i]);
 		}
