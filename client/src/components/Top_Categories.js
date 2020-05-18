@@ -52,7 +52,10 @@ export default class TopCategories extends Component {
   };
 
   getTop = async values => {
+    var t0 = performance.now();
     const result = await axios.post("http://localhost:9000/datasetpoint/getTop", values);
+    var t1 = performance.now();
+    console.log("getTop took" + (t1-t0) + "milliseconds to run");
     console.log(result.data);
     this.setState({top1: result.data.top1});
     this.setState({top2: result.data.top2});

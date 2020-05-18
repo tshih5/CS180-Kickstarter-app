@@ -397,12 +397,12 @@ router.post("/getTop", (req, res, next) => {
 		topc5 = "Art"
 	}
 
-	console.log(arr);
-	console.log(topc1);
-	console.log(topc2);
-	console.log(topc3);
-	console.log(topc4);
-	console.log(topc5);
+	//console.log(arr);
+	//console.log(topc1);
+	//console.log(topc2);
+	//console.log(topc3);
+	//console.log(topc4);
+	//console.log(topc5);
 
 	top.top1 = topc1;
 	top.top2 = topc2;
@@ -416,9 +416,9 @@ router.post("/getTop", (req, res, next) => {
 	top.count4 = arr[3];
 	top.count5 = arr[4];
 
-	console.log(top.count1);
+	//console.log(top.count1);
 
-	console.log(top);
+	//console.log(top);
 	res.send(top);
 
 
@@ -532,8 +532,8 @@ router.post("/getCost", (req, res, next) => {
 			count++;
 		}
 	}
-	var totalAvg = (goal / count);
-	totalAvg = totalAvg.toFixed(2);
+	//var totalAvg = (goal / count);
+	//totalAvg = totalAvg.toFixed(2);
 
 	var moneyy = 0.00;
 	var countt = 0;
@@ -547,8 +547,8 @@ router.post("/getCost", (req, res, next) => {
 	var donation = (moneyy / countt);
 	donation = donation.toFixed(2);
 
-	var percentage = (donation / totalAvg);
-	percentage = percentage.toFixed(2);
+	//var percentage = (donation / totalAvg);
+	//percentage = percentage.toFixed(2);
 
 	for(var k in data) {
 		if(data[k].main_category == avgcostt.value) {
@@ -558,8 +558,8 @@ router.post("/getCost", (req, res, next) => {
 		}
 	}
 
-	avgcostt.avgcost = totalAvg;
-	avgcostt.percentMet = percentage;
+	avgcostt.avgcost = (goal / count).toFixed(2);//totalAvg;
+	avgcostt.percentMet = (donation / (goal / count)).toFixed(2);//percentage;
 	avgcostt.large = largest;
 	res.send(avgcostt);
 });
