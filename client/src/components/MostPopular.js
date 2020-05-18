@@ -8,7 +8,7 @@ export default class MostPopular extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {visible: false, value: 0, amount: 0.0, total: 0.0, max_category: "", projects: []};
+    this.state = {visible: false, value: 0, amount: 0.0, total: 0.0, max_category: "", projects: [], execTime: []};
         
     this.handleChange = this.handleChange.bind(this);
     this.handleOk = this.handleOk.bind(this);
@@ -55,6 +55,9 @@ export default class MostPopular extends Component {
     var endTime = new Date();
     var timeDiff = endTime - startTime;
     console.log("Response took " + timeDiff + "ms");
+    this.state.execTime.push(timeDiff);
+    let average = (array) => array.reduce((a, b) => a + b) / array.length;
+    console.log("Average: " + average(this.state.execTime));
   };
 
   render() {
