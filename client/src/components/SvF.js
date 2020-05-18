@@ -37,6 +37,7 @@ export default class SvF extends Component {
     console.log(e);
     this.setState({
       visible: false,
+      execTime: []
     });
   };
 
