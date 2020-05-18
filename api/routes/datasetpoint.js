@@ -113,12 +113,14 @@ router.post("/getsvf", (req, res, next) => {
 	var successes = 0;
 	var fails = 0;
 	for(var i in data){
-		if((data[i].state == 'successful' || data[i].state == 'live') && data[i].main_category == svfData.category){
-			successes++;
-			svfData.success.push(data[i]);
-		}else if(data[i].main_category == svfData.category){
-			fails++;
-			svfData.fail.push(data[i]);
+		if(data[i].main_category == svfData.category){
+			if(data[i].state == 'successful' || data[i].state == 'live'){
+				successes++;
+				svfData.success.push(data[i]);
+			}else{
+				fails++;
+				svfData.fail.push(data[i]);
+			}
 		}
 	}
 	var ratio;
