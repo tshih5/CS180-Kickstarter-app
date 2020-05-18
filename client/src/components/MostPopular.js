@@ -8,7 +8,7 @@ export default class MostPopular extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {visible: false, value: 0, amount: 0.0, total: 0.0, max_category: "", projects: []};
+    this.state = {visible: false, value: 0, amount: 0.0, total: 0.0, max_category: "", projects: [], execTime: []};
         
     this.handleChange = this.handleChange.bind(this);
     this.handleOk = this.handleOk.bind(this);
@@ -24,7 +24,7 @@ export default class MostPopular extends Component {
   };
 
   handleOk = e => {
-    console.log("value: " , this.state.value);
+    //console.log("value: " , this.state.value);
     var values = {"value": this.state.value, 
                   "amount": 0,
                   "total": 0,
@@ -38,6 +38,7 @@ export default class MostPopular extends Component {
     console.log(e);
     this.setState({
       visible: false,
+      execTime: []
     });
   };
 
@@ -55,6 +56,9 @@ export default class MostPopular extends Component {
     var endTime = new Date();
     var timeDiff = endTime - startTime;
     console.log("Response took " + timeDiff + "ms");
+    this.state.execTime.push(timeDiff);
+    let average = (array) => array.reduce((a, b) => a + b) / array.length;
+    console.log("Average: " + average(this.state.execTime));
   };
 
   render() {
@@ -81,7 +85,7 @@ export default class MostPopular extends Component {
           </div>
           <div>
             <p> The category with the {this.state.value ? "Most Donators": "Highest Donations"} is {"\"" + this.state.max_category  + "\""} with {this.state.value ? "": "$"}{this.state.amount}{this.state.value ? " backers ": " pledged "} out of {this.state.value ? "": "$"}{this.state.total} total</p>
-            <h3>{this.state.max_category == "" ? "": "Projects in " + this.state.max_category}</h3>
+            <h3>{this.state.max_category === "" ? "": "Projects in " + this.state.max_category}</h3>
             <ul>
               {this.state.projects.map(item => {
               return <li>{item.name} with {this.state.value ? "": "$"}{this.state.value ? item.backers: (parseFloat(item.usd_pledged) || 0).toFixed(2)} {this.state.value ? "backers": "pledged"}</li>;

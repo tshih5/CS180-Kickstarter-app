@@ -109,16 +109,18 @@ router.post("/getratio", (req, res, next) => {
 
 router.post("/getsvf", (req, res, next) => {
 	var svfData = req.body;
-	console.log(svfData);
+	//console.log(svfData);
 	var successes = 0;
 	var fails = 0;
 	for(var i in data){
-		if((data[i].state == 'successful' || data[i].state == 'live') && data[i].main_category == svfData.category){
-			successes++;
-			svfData.success.push(data[i]);
-		}else if((data[i].state == 'failed' || data[i].state == 'canceled') && data[i].main_category == svfData.category){
-			fails++;
-			svfData.fail.push(data[i]);
+		if(data[i].main_category == svfData.category){
+			if(data[i].state == 'successful' || data[i].state == 'live'){
+				successes++;
+				svfData.success.push(data[i]);
+			}else{
+				fails++;
+				svfData.fail.push(data[i]);
+			}
 		}
 	}
 	var ratio;
@@ -128,18 +130,17 @@ router.post("/getsvf", (req, res, next) => {
 	}else{
 		svfData.ratio = Infinity;
 	}
-	console.log("ratio is: ", svfData.ratio);
+	//console.log("ratio is: ", svfData.ratio);
 	res.send(svfData);
 });
 
 router.post("/getmostPopular", (req, res, next) => {
 	var popData = req.body;
-	console.log(popData);
 	var categories = [];
 	var amounts = [];
 	for(var i in data){
-		arridx = categories.indexOf(data[i].main_category);
-		if(arridx == -1){																	//category has not been added yet
+		arridx = categories.indexOf(data[i].main_category); //index of category 
+		if(arridx == -1){									//category has not been added yet
 			categories.push(data[i].main_category);
 			if(popData.value == 0){
 				//get donation amount in $
@@ -155,10 +156,10 @@ router.post("/getmostPopular", (req, res, next) => {
 			}
 		}
 	}
-	console.log(categories);
 	var max = 0;
 	var maxIdx = 0;
 	var total = 0;
+	//get total number of backers/ dollars pledged and the index in category array of the biggest category
 	for(var i in amounts){
 		total += amounts[i];
 		if(amounts[i] > max){
@@ -166,16 +167,15 @@ router.post("/getmostPopular", (req, res, next) => {
 			maxIdx = i;
 		}
 	}
+	//push all projects in the largest category to the array
 	for(var i in data){
 		if(data[i].main_category == categories[maxIdx]){
 			popData.projects.push(data[i]);
-			console.log(data[i].name);
 		}
 	}
 	popData.amount = max.toFixed(2);
 	popData.total = total.toFixed(2);
 	popData.max_category = categories[maxIdx];
-	console.log(popData);
 	res.send(popData);
 });
 

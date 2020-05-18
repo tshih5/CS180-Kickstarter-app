@@ -8,7 +8,7 @@ export default class SvF extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {visible: false, category: "Photography", ratio: 0, success: [], fail: []};
+    this.state = {visible: false, category: "Photography", ratio: 0, success: [], fail: [], execTime: []};
         
     this.handleChange = this.handleChange.bind(this);
     this.handleOk = this.handleOk.bind(this);
@@ -24,7 +24,7 @@ export default class SvF extends Component {
   };
 
   handleOk = e => {
-    console.log("category: " , this.state.category, " ratio: ", this.state.ratio);
+    //console.log("category: " , this.state.category, " ratio: ", this.state.ratio);
     var values = {"category": this.state.category, 
                   "ratio": 0,
                   "success": [],
@@ -37,6 +37,7 @@ export default class SvF extends Component {
     console.log(e);
     this.setState({
       visible: false,
+      execTime: [],
     });
   };
 
@@ -53,6 +54,9 @@ export default class SvF extends Component {
     var endTime = new Date();
     var timeDiff = endTime - startTime;
     console.log("Response took " + timeDiff + "ms");
+    this.state.execTime.push(timeDiff);
+    let average = (array) => array.reduce((a, b) => a + b) / array.length;
+    console.log("Average: " + average(this.state.execTime));
   };
 
   render() {
