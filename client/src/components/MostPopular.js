@@ -24,7 +24,7 @@ export default class MostPopular extends Component {
   };
 
   handleOk = e => {
-    console.log("value: " , this.state.value);
+    //console.log("value: " , this.state.value);
     var values = {"value": this.state.value, 
                   "amount": 0,
                   "total": 0,
