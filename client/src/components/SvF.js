@@ -24,7 +24,7 @@ export default class SvF extends Component {
   };
 
   handleOk = e => {
-    console.log("category: " , this.state.category, " ratio: ", this.state.ratio);
+    //console.log("category: " , this.state.category, " ratio: ", this.state.ratio);
     var values = {"category": this.state.category, 
                   "ratio": 0,
                   "success": [],
