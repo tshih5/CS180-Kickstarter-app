@@ -38,6 +38,7 @@ export default class MostPopular extends Component {
     console.log(e);
     this.setState({
       visible: false,
+      execTime: []
     });
   };
 
