@@ -49,7 +49,7 @@ export default class MostPopular1 extends Component {
   };
 
   getbyLocation = async values => {
-    const result = await axios.post("http://localhost:9000/datasetpoint/byLocation", values);
+    const result = await axios.post("http://localhost:9000/analytics/byLocation", values);
     console.log(result.data);
     this.setState({percentage: result.data});
 	this.setState({USProjects: result.data.USProjects});

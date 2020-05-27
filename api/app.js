@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
-var indexRouter = require('./routes/index');
+var analyticsRouter = require('./routes/analytics');
 var usersRouter = require('./routes/users');
 var dataSetPointRouter = require('./routes/datasetpoint');
 //added
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use('/', indexRouter);
+app.use('/analytics', analyticsRouter);
 app.use('/users', usersRouter);
 app.use('/datasetpoint', dataSetPointRouter)
 

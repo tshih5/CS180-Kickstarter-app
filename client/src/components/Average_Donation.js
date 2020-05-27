@@ -50,7 +50,7 @@ export default class AverageDonation extends Component {
   }
 
   getDonation = async values => {
-      const result = await axios.post("http://localhost:9000/datasetpoint/getDonation", values);
+      const result = await axios.post("http://localhost:9000/analytics/getDonation", values);
       console.log(typeof result.data);
       this.setState({donationss: result.data.donationss});
       this.setState({backers: result.data.backers});
