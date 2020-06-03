@@ -92,10 +92,8 @@ export default class MostPopular1 extends Component {
           </div>
           <div>
             <p> The percentage of projects based in {this.state.value } is  {this.state.percentage}% </p>
-			<h4>Projects from selected country:</h4>
-			<ul>
 			
-				</ul>
+		
           </div>
         </Modal>
       </div>
