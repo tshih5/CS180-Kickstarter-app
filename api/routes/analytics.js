@@ -478,6 +478,205 @@ router.post("/getCost", (req, res, next) => {
 	res.send(avgcostt);
 });
 
+router.post("/byLocation", (req, res, next) => {	
+		var locationData = req.body;
+	console.log(locationData);
+	
+	var percent = 0;
+	var count = 0; var count1 = 0; var count2 = 0; var count3 = 0; var count4 = 0; var count5 = 0;
+	var count6 = 0; var count7 = 0; var count8 = 0; var count9 = 0; var count10 = 0; var count11 = 0;
+	var count12 = 0;
+	matches = [];
+	//var count2 = 0;
+	for(var i in data) {
+		if(data[i].country == "US" && locationData.value == "US") {
+			count++;
+		}
+		else if(data[i].country == "UK" && locationData.value == "UK") {
+			count++;
+		}
+		else if(data[i].country == "AU" && locationData.value == "AU") {
+			count++;
+		}
+		else if(data[i].country == "DE" && locationData.value == "DE") {
+			count++;
+		}
+		else if(data[i].country == "ES" && locationData.value == "ES") {
+			count++;
+		}
+		else if(data[i].country == "FR" && locationData.value == "FR") {
+			count++;
+		}
+		else if(data[i].country == "IE" && locationData.value == "IE") {
+			count++;
+		}
+		else if(data[i].country == "IT" && locationData.value == "IT") {
+			count++;
+		}
+		else if(data[i].country == "MX" && locationData.value == "MX") {
+			count++;
+		}
+		else if(data[i].country == "NL" && locationData.value == "NL") {
+			count++;
+		}
+		else if(data[i].country == "NO" && locationData.value == "NO") {
+			count++;
+		}
+		else if(data[i].country == "NZ" && locationData.value == "NZ") {
+			count++;
+		}
+		else if(data[i].country == "SE" && locationData.value == "SE") {
+			count++;
+
+		}
+		
+	}
+	
+	var locations = [];
+	
+	//	for(var i in data){
+	//	if(data[i].country == "US"&& locationData.value == "US"){
+	//		locations.push(data[i].name);
+	//		console.log(data[i].name);
+	//	}
+//	}
+	var ratio;
+	
+	if(count !=0) {
+	 ratio = 100 * (count / 355);
+	}
+	if(count1 !=0) {
+	 ratio = 100 * (count1 / 355);
+	}
+	if(count2 !=0) {
+	 ratio = 100 * (count2 / 355);
+	}if(count3 !=0) {
+	 ratio = 100 * (count3 / 355);
+	}if(count4 !=0) {
+	 ratio = 100 * (count4 / 355);
+	}if(count5 !=0) {
+	 ratio = 100 * (count5 / 355);
+	}if(count6 !=0) {
+	 ratio = 100 * (count6 / 355);
+	}if(count7 !=0) {
+	 ratio = 100 * (count7 / 355);
+	}if(count8 !=0) {
+	 ratio = 100 * (count8 / 355);
+	}if(count9 !=0) {
+	 ratio = 100 * (count9 / 355);
+	}if(count10 !=0) {
+	 ratio = 100 * (count10 / 355);
+	}if(count11 !=0) {
+	 ratio = 100 * (count11 / 355);
+	}
+	if(count12 !=0) {
+	 ratio = 100 * (count12 / 355);
+	}
+	
+	
+	locationData.USProjects = locations;
+	console.log("ratio: ", ratio);
+	ratio = Math.round((ratio + Number.EPSILON) * 100) / 100;
+	res.send(ratio.toString());
+});
+
+//router.post("/byLocationNames", (req, res, next) => {	
+	//	var locationData = req.body;
+	//console.log(locationData);
+	
+//		var locations = [];
+	
+//		for(var i in data){
+//		if(data[i].country == "US"&& locationData.value == "US"){
+//			locations.push(data[i].name);
+//			console.log(data[i].name);
+//		}
+//	}
+	
+	
+//	locationData.USProjects = locations;
+//	res.send(locationData);
+//});
+router.post("/byYear", (req, res, next) => {	
+		var locationData = req.body;
+	console.log(locationData);
+	
+	var searchtext = "/10 ";
+	var searchtext1 = "/11 ";
+	var searchtext2 = "/12 ";
+	var searchtext3 = "/13 ";
+	var searchtext4 = "/14 ";
+	var searchtext5 = "/15 ";
+	var searchtext6 = "/16 ";
+	var count = 0;
+	var count1 = 0;
+	var count2 = 0;
+	var count3 = 0;
+	var count4 = 0;
+	var count5 = 0;
+	var count6 = 0;
+	
+	var str = "";
+	//var count2 = 0;
+	for(var i in data) {
+		if((data[i].launched.includes(searchtext) && locationData.value == 2010)) {
+			count++;
+		}
+		else if ((data[i].launched.includes(searchtext1)&& locationData.value == 2011)) {
+			count1++;
+		}
+		else if ((data[i].launched.includes(searchtext2)&& locationData.value == 2012)) {
+			count2++;
+		}
+		else if ((data[i].launched.includes(searchtext3)&& locationData.value == 2013)) {
+			count3++;
+		}
+		else if ((data[i].launched.includes(searchtext4)&& locationData.value == 2014)) {
+			count4++;
+		}
+		else if ((data[i].launched.includes(searchtext5)&& locationData.value == 2015)) {
+			count5++;
+		}
+		else if ((data[i].launched.includes(searchtext6)&& locationData.value == 2016)) {
+			count6++;
+		}
+	}
+	
+	
+	var year1;
+	year1 = count;
+	year2 = count1;
+	year3 = count2;
+	year4 = count3;
+	year5 = count4;
+	year6 = count5;
+	year7 = count6;
+	console.log("count of year: ", year1);
+if (count !=0) {
+	res.send(year1.toString());
+}
+if (count1 !=0) {
+	res.send(year2.toString());
+}
+if (count2 !=0) {
+	res.send(year3.toString());
+}
+if (count3 !=0) {
+	res.send(year4.toString());
+}
+if (count4 !=0) {
+	res.send(year5.toString());
+}
+if (count5 !=0) {
+	res.send(year6.toString());
+}
+if (count6 !=0) {
+	res.send(year7.toString());
+}
+
+});
+
+
 //app.post("/update/", (req,res) => {
 module.exports = router;	
 
