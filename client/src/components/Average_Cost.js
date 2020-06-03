@@ -51,7 +51,7 @@ export default class AverageCost extends Component {
 
   getCost = async values => {
       var t0 = performance.now();
-      const result = await axios.post("http://localhost:9000/datasetpoint/getCost", values);
+      const result = await axios.post("http://localhost:9000/analytics/getCost", values);
       var t1 = performance.now();
       console.log("getCost took" + (t1-t0) + "milliseconds to run");
       console.log(typeof result.data);
