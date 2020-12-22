@@ -1,3 +1,6 @@
+# Kickstarter Web App
+This app uses React and Express to create a web app that displays Kickstarter Projects from Kaggle and performs data analysis on them.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
